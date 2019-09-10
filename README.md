@@ -1,6 +1,6 @@
 ## To run the Project install [@angular-devkit/build-angular](https://github.com/pronoy026/MentorOnDemand/blob/master/README.md) to the project folder
 
- => npm install @angular-devkit/build-angular
+ => npm install `@angular-devkit/build-angular`
 
 
 # MentorOnDemand

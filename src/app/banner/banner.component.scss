@@ -1,0 +1,24 @@
+.bgmain {
+    /* The image used */
+    background-image: src("../assets/mat_1.jpg");
+    /* Full height */
+    height: 200%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.fright{
+    float: right;
+}
+.bgheadings{
+    padding: 100px;
+    // background-color: black;
+    background: url("../../assets/mat_6.jpg");
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

@@ -1,0 +1,58 @@
+<!-- <nav class="navbar navbar-expand-lg bg-primary navbar-dark sticky-top"> -->
+<nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" routerLink='/home'>MentorOnDemand</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Links -->
+    <div id="navbarNavDropdown" class="navbar-collapse collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" routerLink='/home'>Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Courses</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact Us</a>
+            </li>
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Dropdown link
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Home</a>
+                    <a class="dropdown-item" href="#">Courses</a>
+                    <a class="dropdown-item" href="#">About Us</a>
+                    <a class="dropdown-item" href="#">Contact Us</a>
+                </div>
+            </li>
+        </ul>
+        <ul class="navbar-nav">
+            <li>
+                <form class="form-inline" action="/action_page.php">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                </form>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/signup"><i class="fa fa-user"></i>&nbsp;&nbsp;Sign Up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/signin"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Sign In</a>
+            </li>
+        </ul>
+    </div>
+</nav>

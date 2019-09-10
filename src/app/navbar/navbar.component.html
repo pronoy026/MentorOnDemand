@@ -1,9 +1,8 @@
 <!-- <nav class="navbar navbar-expand-lg bg-primary navbar-dark sticky-top"> -->
 <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
     <!-- Brand -->
-    <a class="navbar-brand" routerLink='/home'>MentorOnDemand</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" routerLink='/home'><img src="../assets/mentor.png">&nbsp;MentorOnDemand</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -47,8 +46,14 @@
                     </div>
                 </form>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/signup"><i class="fa fa-user"></i>&nbsp;&nbsp;Sign Up</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                    <i class="fa fa-user"></i> Sign Up
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" routerLink="/studentsignup">Student</a>
+                    <a class="dropdown-item" routerLink="/mentorsignup">Mentor</a>
+                </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link" routerLink="/signin"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Sign In</a>

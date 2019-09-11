@@ -15,7 +15,8 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Enter full name" id="emailSignIn" aria-describedby="emailHelp">
+                                <input type="text" class="form-control" placeholder="Enter full name" id="mentorName"
+                                    aria-describedby="emailHelp">
                             </div>
                         </div>
                         <!-- email -->
@@ -26,24 +27,111 @@
                                     <span class="input-group-text"><i class="fa fa-envelope"
                                             aria-hidden="true"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Enter your email" id="emailSignIn" aria-describedby="emailHelp">
+                                <input type="text" class="form-control" placeholder="Enter your email" id="mentorEmail"
+                                    aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                        <!-- phone no -->
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Phone No</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-phone"
+                                            aria-hidden="true"></i></span>
+                                </div>
+                                <input type="tel" class="form-control" placeholder="e.g. - 9876543210" id="mentorPhoneNo">
+                            </div>
+                        </div>
+                        <!-- experience in years -->
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Experience in years</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-arrow-circle-o-up"
+                                            aria-hidden="true"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="e.g.- 5" id="mentorYearsOfExp">
+                            </div>
+                        </div>
+
+                        <!-- menor availability -->
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Mentor Available From</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-calendar-o"
+                                            aria-hidden="true"></i></span>
+                                </div>
+                                <input type="date" class="form-control" placeholder="Start Date" id="mentorStartDate">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">To</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-calendar-o"
+                                            aria-hidden="true"></i></span>
+                                </div>
+                                <input type="date" class="form-control" placeholder="End Date" id="mentorEndDate">
+                            </div>
+                        </div>
+
+                        <!-- technology -->
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Technology</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-sort"
+                                            aria-hidden="true"></i></span>
+                                </div>
+                                <select class="form-control" id="selectTechType" name="selectTechType">
+                                    <option value="student">Java</option>
+                                    <option value="mentor">C++</option>
+                                    <option value="student">Python</option>
+                                    <option value="mentor">Javascript</option>
+                                    <option value="student">Android</option>
+                                    <option value="mentor">Full Stack Development</option>
+                                    <option value="student">.Net</option>
+                                    <option value="mentor">ReactJS</option>
+                                    <option value="student">AngularJS</option>
+                                    <option value="mentor">Ruby</option>
+                                    <option value="student">Ios</option>
+                                    <option value="mentor">Machine Learning</option>
+                                    <option value="student">Deep Learning</option>
+                                    <option value="mentor">Cloud Technology</option>
+                                    <option value="student">IOT</option>
+                                    <option value="mentor">Competitive Programming</option>
+                                    <option value="student">DevOps</option>
+                                    <option value="mentor">Business Management</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- LinkedIn url -->
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">LinkedIn Url</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-linkedin"
+                                            aria-hidden="true"></i></span>
+                                </div>
+                                <input type="url" class="form-control" placeholder="https://linkedin.com/username" id="mentorLinkedinUrl">
                             </div>
                         </div>
                         <!-- Account type -->
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="exampleInputEmail1">Account Type</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-id-card-o"
                                             aria-hidden="true"></i></span>
                                 </div>
-                                <!-- <input type="text" class="form-control" placeholder="Enter your email" id="emailSignIn" aria-describedby="emailHelp"> -->
                                 <select class="form-control" id="selectAccountType" name="selectAccountType">
                                     <option value="student">Student</option>
                                     <option value="mentor">Mentor</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- password -->
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
@@ -51,7 +139,8 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></span>
                                 </div>
-                                <input type="password" class="form-control" id="passwordSignIn" placeholder="Create password" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <input type="password" class="form-control" id="passwordSignIn"
+                                    placeholder="Create password" id="mentorPassword">
                             </div>
                         </div>
                         <!-- confirm password -->
@@ -61,12 +150,13 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></span>
                                 </div>
-                                <input type="password" class="form-control" id="passwordSignIn" placeholder="Confirm password" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <input type="password" class="form-control" id="passwordSignIn"
+                                    placeholder="Confirm password" id="mentorConfirmPassword" aria-describedby="emailHelp">
                             </div>
                         </div>
                         <!-- agree to terms and conditions form check -->
                         <div class="form-check mb-3">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <input type="checkbox" class="form-check-input" id="mentorSignupCheck">
                             <label class="form-check-label" for="exampleCheck1">Agree to the <a href="#">terms and
                                     conditions</a></label>
                         </div>

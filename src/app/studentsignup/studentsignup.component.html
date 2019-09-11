@@ -15,7 +15,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Enter full name" id="emailSignIn" aria-describedby="emailHelp" required>
+                                <input type="text" class="form-control" placeholder="Enter full name" id="userName" aria-describedby="emailHelp" required>
                             </div>
                         </div>
                         <!-- email -->
@@ -26,24 +26,34 @@
                                     <span class="input-group-text"><i class="fa fa-envelope"
                                             aria-hidden="true"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Enter your email" id="emailSignIn" aria-describedby="emailHelp">
+                                <input type="text" class="form-control" placeholder="Enter your email" id="userEmail" aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                        <!-- phone no -->
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Phone No</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-phone"
+                                            aria-hidden="true"></i></span>
+                                </div>
+                                <input type="tel" class="form-control" placeholder="e.g. - 9876543210" id="userPhoneNo">
                             </div>
                         </div>
                         <!-- Account type -->
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="exampleInputEmail1">Account Type</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-id-card-o"
                                             aria-hidden="true"></i></span>
                                 </div>
-                                <!-- <input type="text" class="form-control" placeholder="Enter your email" id="emailSignIn" aria-describedby="emailHelp"> -->
                                 <select class="form-control" id="selectAccountType" name="selectAccountType">
                                     <option value="student">Student</option>
                                     <option value="mentor">Mentor</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- password -->
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
@@ -51,7 +61,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></span>
                                 </div>
-                                <input type="password" class="form-control" id="passwordSignIn" placeholder="Create password" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <input type="password" class="form-control" id="passwordSignIn" placeholder="Create password" id="userCreatePassword" aria-describedby="emailHelp">
                             </div>
                         </div>
                         <!-- confirm password -->
@@ -61,12 +71,12 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></span>
                                 </div>
-                                <input type="password" class="form-control" id="passwordSignIn" placeholder="Confirm password" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <input type="password" class="form-control" id="passwordSignIn" placeholder="Confirm password" id="userConfirmPassword" aria-describedby="emailHelp">
                             </div>
                         </div>
                         <!-- agree to terms and conditions form check -->
                         <div class="form-check mb-3">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <input type="checkbox" class="form-check-input" id="userSignupCheck">
                             <label class="form-check-label" for="exampleCheck1">Agree to the <a href="#">terms and
                                     conditions</a></label>
                         </div>

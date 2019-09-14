@@ -3,21 +3,24 @@
         <div class="col-md-2"></div>
         <div class="col-md-8">
             <div class="d-flex justify-content-center">
-                <div class="card shadow" style="padding: 50px; height: 100%; width: 450px">
-                    <form>
+                <div class="card shadow" style="padding: 50px; height: 100%; width: 500px">
+                    <form #mentorForm = "ngForm">
                         <div style="text-align: center">
                             <h3 style="color: black">Sign Up as Mentor</h3>
                         </div>
+                        {{mentorForm.value | json}}
+                        {{mentorForm.form.valid}}
+
                         <!-- Name -->
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Name</label>
+                            <label for="mentorName">Name</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Enter full name" id="mentorName"
-                                    aria-describedby="emailHelp">
+                                <input type="text" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class="form-control" placeholder="Enter full name" id="mentorName" name="mentorName" ngModel required>
                             </div>
+                            <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required!</small>
                         </div>
                         <!-- email -->
                         <div class="form-group">
@@ -27,9 +30,9 @@
                                     <span class="input-group-text"><i class="fa fa-envelope"
                                             aria-hidden="true"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Enter your email" id="mentorEmail"
-                                    aria-describedby="emailHelp">
+                                <input type="text" #email="ngModel" [class.is-invalid]="email.invalid && email.touched" class="form-control" placeholder="Enter your email" id="mentorEmail" name="mentorEmail" ngModel required>
                             </div>
+                            <small class="text-danger" [class.d-none]= " email.valid || email.untouched">Email is required!</small>
                         </div>
                         <!-- phone no -->
                         <div class="form-group">
@@ -39,8 +42,9 @@
                                     <span class="input-group-text"><i class="fa fa-phone"
                                             aria-hidden="true"></i></span>
                                 </div>
-                                <input type="tel" class="form-control" placeholder="e.g. - 9876543210" id="mentorPhoneNo">
+                                <input type="tel" pattern="^\d{10}$" #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" class="form-control" placeholder="e.g. - 9876543210" id="mentorPhoneNo" name="mentorPhoneNo" ngModel required>
                             </div>
+                            <small class="text-danger" [class.d-none]= "phone.valid || phone.untouched ">Phone no is required and must be of 10 digits.</small>
                         </div>
                         <!-- experience in years -->
                         <div class="form-group">
@@ -50,7 +54,7 @@
                                     <span class="input-group-text"><i class="fa fa-arrow-circle-o-up"
                                             aria-hidden="true"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="e.g.- 5" id="mentorYearsOfExp">
+                                <input type="text" class="form-control" placeholder="e.g.- 5" id="mentorYearsOfExp" name="mentorYearsOfExp" ngModel required>
                             </div>
                         </div>
 
@@ -62,7 +66,7 @@
                                     <span class="input-group-text"><i class="fa fa-calendar-o"
                                             aria-hidden="true"></i></span>
                                 </div>
-                                <input type="date" class="form-control" placeholder="Start Date" id="mentorStartDate">
+                                <input type="date" class="form-control" placeholder="Start Date" id="mentorStartDate" name="mentorStartDate" ngModel required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -72,37 +76,20 @@
                                     <span class="input-group-text"><i class="fa fa-calendar-o"
                                             aria-hidden="true"></i></span>
                                 </div>
-                                <input type="date" class="form-control" placeholder="End Date" id="mentorEndDate">
+                                <input type="date" class="form-control" placeholder="End Date" id="mentorEndDate" name="mentorEndDate" ngModel required>
                             </div>
                         </div>
 
                         <!-- technology -->
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Technology</label>
+                            <label for="selectTechType">Technology</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-sort"
                                             aria-hidden="true"></i></span>
                                 </div>
-                                <select class="form-control" id="selectTechType" name="selectTechType">
-                                    <option value="student">Java</option>
-                                    <option value="mentor">C++</option>
-                                    <option value="student">Python</option>
-                                    <option value="mentor">Javascript</option>
-                                    <option value="student">Android</option>
-                                    <option value="mentor">Full Stack Development</option>
-                                    <option value="student">.Net</option>
-                                    <option value="mentor">ReactJS</option>
-                                    <option value="student">AngularJS</option>
-                                    <option value="mentor">Ruby</option>
-                                    <option value="student">Ios</option>
-                                    <option value="mentor">Machine Learning</option>
-                                    <option value="student">Deep Learning</option>
-                                    <option value="mentor">Cloud Technology</option>
-                                    <option value="student">IOT</option>
-                                    <option value="mentor">Competitive Programming</option>
-                                    <option value="student">DevOps</option>
-                                    <option value="mentor">Business Management</option>
+                                <select class="form-control" id="selectTechType" name="selectTechType" ngModel required>
+                                    <option *ngFor="let tech of techs">{{ tech }}</option>
                                 </select>
                             </div>
                         </div>
@@ -115,23 +102,9 @@
                                     <span class="input-group-text"><i class="fa fa-linkedin"
                                             aria-hidden="true"></i></span>
                                 </div>
-                                <input type="url" class="form-control" placeholder="https://linkedin.com/username" id="mentorLinkedinUrl">
+                                <input type="url" class="form-control" placeholder="https://linkedin.com/username" id="mentorLinkedinUrl" name="mentorLinkedinUrl" ngModel required>
                             </div>
                         </div>
-                        <!-- Account type -->
-                        <!-- <div class="form-group">
-                            <label for="exampleInputEmail1">Account Type</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-id-card-o"
-                                            aria-hidden="true"></i></span>
-                                </div>
-                                <select class="form-control" id="selectAccountType" name="selectAccountType">
-                                    <option value="student">Student</option>
-                                    <option value="mentor">Mentor</option>
-                                </select>
-                            </div>
-                        </div> -->
                         <!-- password -->
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
@@ -139,8 +112,8 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></span>
                                 </div>
-                                <input type="password" class="form-control" id="passwordSignIn"
-                                    placeholder="Create password" id="mentorPassword">
+                                <input type="password" class="form-control" id="passwordSignIn" #password="ngModel"
+                                    placeholder="Create password" id="mentorPassword" name="mentorPassword" ngModel required>
                             </div>
                         </div>
                         <!-- confirm password -->
@@ -150,17 +123,17 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></span>
                                 </div>
-                                <input type="password" class="form-control" id="passwordSignIn"
-                                    placeholder="Confirm password" id="mentorConfirmPassword" aria-describedby="emailHelp">
+                                <input type="password" class="form-control" id="passwordSignIn" #confirmPassword="ngModel"
+                                    placeholder="Confirm password" id="mentorConfirmPassword" name="mentorConfirmPassword" ngModel required>
                             </div>
                         </div>
                         <!-- agree to terms and conditions form check -->
                         <div class="form-check mb-3">
-                            <input type="checkbox" class="form-check-input" id="mentorSignupCheck">
+                            <input type="checkbox" class="form-check-input" id="mentorSignupCheck" name="mentorSignupCheck" ngModel required>
                             <label class="form-check-label" for="exampleCheck1">Agree to the <a href="#">terms and
                                     conditions</a></label>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button [disabled]="mentorForm.form.invalid" type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>

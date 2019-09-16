@@ -4,10 +4,11 @@
         <div class="col-md-8">
             <div class="d-flex justify-content-center">
                 <div class="card shadow" style="padding: 50px; height: 100%; width: 500px">
-                    <form>
+                    <form #studentForm="ngForm">
                         <div style="text-align: center">
                             <h3 style="color: black">Sign Up as Student</h3>
                         </div>
+                        {{studentForm.value | json}}
                         <!-- Name -->
                         <div class="form-group">
                             <label for="exampleInputEmail1">Name</label>
@@ -15,8 +16,12 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Enter full name" id="userName" aria-describedby="emailHelp" required>
+                                <input type="text" class="form-control" #sname="ngModel"
+                                    [class.is-invalid]="sname.invalid && sname.touched" placeholder="Enter full name"
+                                    id="userName" aria-describedby="emailHelp" name="studentName" ngModel required>
                             </div>
+                            <small class="text-danger" [class.d-none]=" sname.valid || sname.untouched"> Name is
+                                required!</small>
                         </div>
                         <!-- email -->
                         <div class="form-group">
@@ -26,34 +31,26 @@
                                     <span class="input-group-text"><i class="fa fa-envelope"
                                             aria-hidden="true"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Enter your email" id="userEmail" aria-describedby="emailHelp">
+                                <input type="text" class="form-control" #email="ngModel" placeholder="Enter your email"
+                                    id="userEmail" aria-describedby="emailHelp" name="mentorEmail" ngModel required>
                             </div>
+                            <small class="text-danger" [class.d-none]="email.valid || email.untouched"> Email is
+                                required!</small>
                         </div>
                         <!-- phone no -->
                         <div class="form-group">
                             <label for="exampleInputEmail1">Phone No</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-phone"
-                                            aria-hidden="true"></i></span>
+                                    <span class="input-group-text"><i class="fa fa-phone" aria-hidden="true"></i></span>
                                 </div>
-                                <input type="tel" class="form-control" placeholder="e.g. - 9876543210" id="userPhoneNo">
+                                <input type="tel" #phone="ngModel" pattern="^\d{10}$" class="form-control"
+                                    placeholder="e.g. - 9876543210" id="userPhoneNo" name="studentPhone" ngModel
+                                    required>
                             </div>
+                            <small class="text-danger" [class.d-none]="phone.valid || phone.untouched"> Enter valid
+                                Phone No of 10 digits.</small>
                         </div>
-                        <!-- Account type -->
-                        <!-- <div class="form-group">
-                            <label for="exampleInputEmail1">Account Type</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-id-card-o"
-                                            aria-hidden="true"></i></span>
-                                </div>
-                                <select class="form-control" id="selectAccountType" name="selectAccountType">
-                                    <option value="student">Student</option>
-                                    <option value="mentor">Mentor</option>
-                                </select>
-                            </div>
-                        </div> -->
                         <!-- password -->
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
@@ -61,8 +58,12 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></span>
                                 </div>
-                                <input type="password" class="form-control" id="passwordSignIn" placeholder="Create password" id="userCreatePassword" aria-describedby="emailHelp">
+                                <input type="password" class="form-control" id="passwordSignIn" #password="ngModel"
+                                    placeholder="Create password" id="userCreatePassword" aria-describedby="emailHelp"
+                                    name="studentPassword" ngModel required>
                             </div>
+                            <small class="text-danger" [class.d-none]="password.valid || password.untouched"> Please
+                                enter a new password.</small>
                         </div>
                         <!-- confirm password -->
                         <div class="form-group">
@@ -71,12 +72,20 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></span>
                                 </div>
-                                <input type="password" class="form-control" id="passwordSignIn" placeholder="Confirm password" id="userConfirmPassword" aria-describedby="emailHelp">
+                                <input type="password" class="form-control" id="passwordSignIn"
+                                    placeholder="Confirm password" id="userConfirmPassword" #cpassword="ngModel"
+                                    aria-describedby="emailHelp" name="studentConfirmPassword" ngModel required>
                             </div>
+                            <small class="text-danger" [class.d-none]="cpassword.valid || cpassword.untouched"> Please
+                                enter confirm password</small>
+                            <small class="text-danger"
+                                *ngIf=" cpassword.touched && cpassword.value!=password.value && cpassword.errors?.required">
+                                Password and Confirm Password should be same.</small>
                         </div>
                         <!-- agree to terms and conditions form check -->
                         <div class="form-check mb-3">
-                            <input type="checkbox" class="form-check-input" id="userSignupCheck">
+                            <input type="checkbox" class="form-check-input" id="userSignupCheck" name="studentCheck"
+                                ngModel required>
                             <label class="form-check-label" for="exampleCheck1">Agree to the <a href="#">terms and
                                     conditions</a></label>
                         </div>

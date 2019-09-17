@@ -10,6 +10,8 @@ import { FooterComponent } from './footer/footer.component';
 import { BannerComponent } from './banner/banner.component';
 import { MentorsignupComponent } from './mentorsignup/mentorsignup.component';
 import { StudentsignupComponent } from './studentsignup/studentsignup.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
+import { CoursesComponent } from './courses/courses.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { StudentsignupComponent } from './studentsignup/studentsignup.component'
     FooterComponent,
     BannerComponent,
     MentorsignupComponent,
-    StudentsignupComponent
+    StudentsignupComponent,
+    AboutusComponent,
+    CoursesComponent
   ],
   imports: [
     BrowserModule,

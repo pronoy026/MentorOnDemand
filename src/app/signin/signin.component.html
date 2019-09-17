@@ -50,6 +50,7 @@
                                 </div>
                                 <input type="password" #password="ngModel" name="signinPassword" class="form-control" id="passwordSignIn" placeholder="Enter your password" id="signinPassword" ngModel required>
                             </div>
+                            <small class="text-danger" [class.d-none]="password.valid || password.untouched"> Please enter password!</small>
                             <!-- if email or password is incorrect
                             <small class="text-danger"> Sorry! Email or Password is incorrect! Please try again.</small> -->
                         </div>

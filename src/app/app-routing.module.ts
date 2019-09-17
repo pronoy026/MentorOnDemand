@@ -4,6 +4,8 @@ import { BannerComponent } from './banner/banner.component';
 import { SigninComponent } from './signin/signin.component';
 import { StudentsignupComponent } from './studentsignup/studentsignup.component';
 import { MentorsignupComponent } from './mentorsignup/mentorsignup.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
+import { CoursesComponent } from './courses/courses.component';
 
 
 const routes: Routes = [
@@ -11,7 +13,9 @@ const routes: Routes = [
   { path: 'home', component: BannerComponent},
   { path : 'signin', component: SigninComponent},
   { path: 'studentsignup', component : StudentsignupComponent},
-  { path: 'mentorsignup', component : MentorsignupComponent}
+  { path: 'mentorsignup', component : MentorsignupComponent},
+  { path: 'aboutus', component: AboutusComponent},
+  { path: 'courses' , component: CoursesComponent}
 ];
 
 @NgModule({

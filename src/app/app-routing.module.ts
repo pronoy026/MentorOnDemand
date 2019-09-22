@@ -7,6 +7,8 @@ import { MentorsignupComponent } from './mentorsignup/mentorsignup.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { CoursesComponent } from './courses/courses.component';
 import { ContactusComponent } from './contactus/contactus.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { SearchComponent } from './search/search.component';
 
 
 const routes: Routes = [
@@ -17,8 +19,10 @@ const routes: Routes = [
   { path: 'mentorsignup', component : MentorsignupComponent},
   { path: 'aboutus', component: AboutusComponent},
   { path: 'courses' , component: CoursesComponent},
-  { path: 'contactus', component: ContactusComponent}
-];
+  { path: 'contactus', component: ContactusComponent},
+  { path: 'search', component: SearchComponent},
+  { path: '**' , component: PagenotfoundComponent}
+  ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

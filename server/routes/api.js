@@ -19,13 +19,12 @@ router.get('/', (req, res) => {
 
 router.post('/studentSignup', (req, res) => {
     let studentData = req.body;
-    console.log(req.body);
+    console.log("Post Method Data : " + req.body);
     let student = new Student(studentData)
     student.save((err, registeredStudent) => {
         if (err) {
             console.log(err)
-        }
-        else {
+        } else {
             res.status(200).send(registeredStudent)
         }
     })
@@ -36,15 +35,13 @@ router.post('/studentLogin', (req, res) => {
     Student.findOne({ email: studentData.email }, (err, student) => {
         if (err) {
             console.log(err)
-        } else{
-            if(!student) {
+        } else {
+            if (!student) {
                 res.status(400).send('Invalid Email')
-            }
-            else {
-                if(student.password !== studentData.password) {
+            } else {
+                if (student.password !== studentData.password) {
                     res.status(400).send('Invalid Password')
-                }
-                else {
+                } else {
                     res.status(200).send(student)
                 }
             }

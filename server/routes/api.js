@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
+const jwt = require('jsonwebtoken')
 const config = require('../config')
 const Student = require('../models/model_student')
 
@@ -25,7 +26,9 @@ router.post('/studentSignup', (req, res) => {
         if (err) {
             console.log(err)
         } else {
-            res.status(200).send(registeredStudent)
+            let payload = { subject: registeredStudent._id }
+            let token = jwt.sign( payload, 'secretKey')
+            res.status(200).send({token})
         }
     })
 })
@@ -37,12 +40,14 @@ router.post('/studentLogin', (req, res) => {
             console.log(err)
         } else {
             if (!student) {
-                res.status(400).send('Invalid Email')
+                res.status(400).send('Sorry! Invalid Email. Please try again.')
             } else {
                 if (student.password !== studentData.password) {
-                    res.status(400).send('Invalid Password')
+                    res.status(400).send('Sorry! Invalid Password. Please try again.')
                 } else {
-                    res.status(200).send(student)
+                    let payload = { subject: student._id }
+                    let token = jwt.sign( payload, 'secretKey')
+                    res.status(200).send({token})
                 }
             }
 

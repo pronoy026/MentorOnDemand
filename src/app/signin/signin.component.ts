@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -10,7 +11,8 @@ export class SigninComponent implements OnInit {
 
   signinType;
   signinData={}
-  constructor( private _auth : AuthService) { }
+  message = ''
+  constructor( private _auth : AuthService, private _router : Router) { }
 
   ngOnInit() {
   }
@@ -21,8 +23,15 @@ export class SigninComponent implements OnInit {
 
       this._auth.loginStudent(this.signinData)
         .subscribe(
-          res => console.log(res),
-          err => console.log(err)
+          res => {
+             console.log(res)
+             localStorage.setItem('token', res.token)
+             this._router.navigate(['/test'])
+            },
+          err => {
+            console.log(err.error)
+            this.message=err.error
+          }
         )
     }
     else{

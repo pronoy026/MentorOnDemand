@@ -15,8 +15,11 @@ import { CoursesComponent } from './courses/courses.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { SearchComponent } from './search/search.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { AuthService } from './auth.service';
+import { TestComponent } from './test/test.component';
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService } from './token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -31,16 +34,17 @@ import { AuthService } from './auth.service';
     CoursesComponent,
     ContactusComponent,
     SearchComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule
-    
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard, 
+  { provide : HTTP_INTERCEPTORS, useClass : TokenInterceptorService, multi : true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-studentsignup',
@@ -8,7 +9,7 @@ import { AuthService } from '../auth.service'
 })
 export class StudentsignupComponent implements OnInit {
 
-  constructor( private _auth : AuthService) { }
+  constructor( private _auth : AuthService, private _router : Router) { }
 
   registerStudentData = {name: "", email: "", phone: "", password: ""}
 
@@ -19,9 +20,12 @@ export class StudentsignupComponent implements OnInit {
     console.log(this.registerStudentData)
     this._auth.registerStudent(this.registerStudentData)
       .subscribe(
-          res => console.log(res),
+          res => {
+            console.log(res)
+            localStorage.setItem('token', res.token)
+            this._router.navigate(['/test'])
+          },
           err => console.log(err)
       )
   }
-
 }

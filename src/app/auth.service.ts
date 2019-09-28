@@ -19,4 +19,8 @@ export class AuthService {
   loginStudent(student) {
     return this.http.post<any>(this._loginStudentUrl, student)
   }
+
+  loggedIn() {
+    return !!localStorage.getItem('token')  //a boolean value to check if the token is present or not
+  }
 }

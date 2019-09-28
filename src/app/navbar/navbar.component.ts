@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BannerComponent } from '../banner/banner.component';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,14 +9,11 @@ import { BannerComponent } from '../banner/banner.component';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  target = "one";
-  constructor(private _router: Router) {}
+  userEmail
+  constructor(public _authService : AuthService) {}
 
   ngOnInit() {
+   
   }
-  scrollToElement(): void {
-    console.log("clicked")
-    this._router.navigate(['/aboutus']);
-    // $element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
-  }
+  
 }

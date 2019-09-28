@@ -10,7 +10,7 @@ export class BannerComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.target);
+
   }
   scrollToElement($element): void {
     console.log($element);

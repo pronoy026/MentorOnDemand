@@ -12,7 +12,7 @@ export class SigninComponent implements OnInit {
   signinType;
   signinData={}
   message = ''
-  constructor( private _auth : AuthService, private _router : Router) { }
+  constructor( private _auth : AuthService, private _router : Router, public _auth2 :AuthService) { }
 
   ngOnInit() {
   }
@@ -26,6 +26,8 @@ export class SigninComponent implements OnInit {
           res => {
              console.log(res)
              localStorage.setItem('token', res.token)
+             this._auth2.userEmail=res.userEmail
+             console.log(typeof(res.userEmail))
              this._router.navigate(['/test'])
             },
           err => {

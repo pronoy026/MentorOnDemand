@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'courses', component: CoursesComponent },
   { path: 'contactus', component: ContactusComponent },
   { path: 'search', component: SearchComponent },
-  { path: 'test', component: TestComponent, canActivate: [AuthGuard] }, // Can route only after logging in
+  { path: 'test', component: TestComponent,canActivate: [AuthGuard] }, // Can route only after logging in
   { path: '**', component: PagenotfoundComponent }
 ];
 

@@ -10,10 +10,17 @@ import { AuthService } from '../auth.service';
 })
 export class NavbarComponent implements OnInit {
   userEmail
-  constructor(public _authService : AuthService) {}
+
+  constructor(public _authService: AuthService) { }
 
   ngOnInit() {
-   
+    if (this._authService.loggedIn()) {
+      this._authService.specialTokenRequest()
+        .subscribe(
+          res => this._authService.userEmail = res,
+          err => console.log(err)
+        )
+    }
   }
-  
+
 }

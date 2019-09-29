@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class StudentsignupComponent implements OnInit {
 
-  constructor( private _auth : AuthService, private _router : Router, public _auth2 : AuthService) { }
+  constructor( private _auth : AuthService, private _router : Router) { }
 
   registerStudentData = {name: "", email: "", phone: "", password: ""}
 
@@ -23,7 +23,6 @@ export class StudentsignupComponent implements OnInit {
           res => {
             console.log(res)
             localStorage.setItem('token', res.token)
-            this._auth2.userEmail=res.userEmail
             this._router.navigate(['/test'])
           },
           err => console.log(err)

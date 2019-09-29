@@ -17,6 +17,7 @@ export class TokenInterceptorService implements HttpInterceptor {
         // Authorization : 'Bearer xx.xx.xx'
       }
     })
+    console.log('intercepted : token added to http header')
     return next.handle(tokenizedReq)
   }
 }

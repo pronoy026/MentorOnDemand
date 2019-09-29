@@ -12,14 +12,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 export class TestComponent implements OnInit {
 
-  response;
-
-  constructor( private _auth : AuthService, private _router : Router) { }
+  constructor( private _auth : AuthService, private _router : Router, public _auth2 : AuthService) { }
 
   ngOnInit() {
     this._auth.specialTokenRequest().
     subscribe(
-      res => this.response = res,
+      res => this._auth2.userEmail = res,
       err => {
         if(err instanceof HttpErrorResponse) {
           if (err.status === 401) {

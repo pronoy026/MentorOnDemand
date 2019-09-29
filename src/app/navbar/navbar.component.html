@@ -46,7 +46,7 @@
                 <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="/signin" style="color:#fff">&nbsp;&nbsp;Sign In</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" *ngIf="_authService.loggedIn()" style="color:#fff">Welcome {{userEmail}}</a>
+                <a class="nav-link" *ngIf="_authService.loggedIn()" style="color:#fff">Welcome {{_authService.userEmail}}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" *ngIf="_authService.loggedIn()" style="color:#fff; cursor: pointer;" (click)="_authService.logout()"><i class="fa fa-power-off" aria-hidden="true"></i>&nbsp;&nbsp;Sign Out</a>

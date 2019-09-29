@@ -26,10 +26,10 @@ router.post('/studentSignup', (req, res) => {
         if (err) {
             console.log(err)
         } else {
-            let payload = { subject: registeredStudent._id }
+            let payload = { subject: registeredStudent.email }
             let token = jwt.sign(payload, 'secretKey')
-            let userEmail = registeredStudent.email
-            res.status(200).send({ token, userEmail })
+                // let userEmail = registeredStudent.email
+            res.status(200).send({ token })
         }
     })
 })
@@ -46,11 +46,11 @@ router.post('/studentLogin', (req, res) => {
                 if (student.password !== studentData.password) {
                     res.status(400).send('Sorry! Invalid Password. Please try again.')
                 } else {
-                    let payload = { subject: student._id }
+                    let payload = { subject: student.email }
                     let token = jwt.sign(payload, 'secretKey')
                         //
-                    let userEmail = student.email
-                    res.status(200).send({ token, userEmail })
+                        // let userEmail = student.email
+                    res.status(200).send({ token })
                 }
             }
 
@@ -59,7 +59,8 @@ router.post('/studentLogin', (req, res) => {
 })
 
 router.get('/specialTokenRequest', verifyToken, (req, res) => {
-    res.status(202).send('Authorized request.')
+    let userEmail = JSON.stringify(req.userEmail)
+    res.send(userEmail)
 })
 
 function verifyToken(req, res, next) {
@@ -74,7 +75,7 @@ function verifyToken(req, res, next) {
     if (!payload) {
         return res.status(401).send('Unauthorized request!')
     }
-    req.userId = payload.subject
+    req.userEmail = payload.subject
         // console.log(req.userId) 
     next()
 }

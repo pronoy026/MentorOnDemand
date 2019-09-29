@@ -7,10 +7,11 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
+  userEmail :string
+
   private _registerStudentUrl = "http://localhost:3000/api/studentSignup"
   private _loginStudentUrl = "http://localhost:3000/api/studentLogin"
   private _specialTokenRequestUrl = "http://localhost:3000/api/specialTokenRequest"
-  userEmail : string
 
 
   constructor( private http: HttpClient, private _router : Router) { }
@@ -32,16 +33,13 @@ export class AuthService {
     this._router.navigate(['/signin'])
   }
 
-  setUserEmail(email) {
-    this.userEmail= email
-    console.log(email)
-    console.log(this.userEmail)
-  }
 
+  //////////////////////////
   specialTokenRequest() {
     return this.http.get<any>(this._specialTokenRequestUrl)
   }
 
+//////////////////////////////
   getToken() {
     // console.log(localStorage.getItem('token'))
     return localStorage.getItem('token')

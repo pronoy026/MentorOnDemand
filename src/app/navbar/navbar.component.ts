@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BannerComponent } from '../banner/banner.component';
 import { AuthService } from '../auth.service';
+import { DatashareService } from '../datashare.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,13 +12,20 @@ import { AuthService } from '../auth.service';
 export class NavbarComponent implements OnInit {
   userEmail
 
-  constructor(public _authService: AuthService) { }
+  constructor(public _datashare: DatashareService, private _authService: AuthService) { }
 
   ngOnInit() {
     if (this._authService.loggedIn()) {
       this._authService.specialTokenRequest()
         .subscribe(
-          res => this._authService.userEmail = res,
+          res => {
+            this._datashare.userEmail = res.userEmail
+            this._datashare.userTypeStudent = true
+            this._datashare.userTypeMentor = false
+            this._datashare.userTypeAdmin = false
+            this._datashare.userName = res.name.split(' ')[0]
+            console.log(res)
+          },
           err => console.log(err)
         )
     }

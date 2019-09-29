@@ -20,6 +20,7 @@ import { AuthService } from './auth.service';
 import { TestComponent } from './test/test.component';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
+import { DatashareService } from './datashare.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { TokenInterceptorService } from './token-interceptor.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService, AuthGuard, 
+  providers: [AuthService, AuthGuard, DatashareService,
   { provide : HTTP_INTERCEPTORS, useClass : TokenInterceptorService, multi : true }],
   bootstrap: [AppComponent]
 })

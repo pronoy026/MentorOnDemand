@@ -1,5 +1,5 @@
 <!-- <nav class="navbar navbar-expand-lg bg-primary navbar-dark sticky-top"> -->
-<nav class="navbar navbar-expand-lg bg-dark  navbar-light">
+<nav class="navbar navbar-expand-lg bg-dark  navbar-dark">
     <!-- Brand -->
     <a class="navbar-brand" routerLink='/home' style="font-family: fantasy; color: #fff"><img src="../assets/mentor.png">&nbsp;MentorOnDemand</a>
 
@@ -45,9 +45,16 @@
             <li class="nav-item">
                 <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="/signin" style="color:#fff">&nbsp;&nbsp;Sign In</a>
             </li>
+
+            <!-- for student  -->
             <li class="nav-item">
-                <a class="nav-link" *ngIf="_authService.loggedIn()" style="color:#fff">Welcome {{_authService.userEmail}}</a>
+                <a class="nav-link" *ngIf='_authService.loggedIn() && _datashare.userTypeStudent' style="color:#00887a; cursor: pointer;" routerLink='/test'>Welcome! {{_datashare.userName}}</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" *ngIf='_authService.loggedIn() && _datashare.userTypeStudent' style="color:#fff; cursor: pointer;" routerLink='/test'>Dashboard</a>
+            </li>
+
+            <!-- logout -->
             <li class="nav-item">
                 <a class="nav-link" *ngIf="_authService.loggedIn()" style="color:#fff; cursor: pointer;" (click)="_authService.logout()"><i class="fa fa-power-off" aria-hidden="true"></i>&nbsp;&nbsp;Sign Out</a>
             </li>

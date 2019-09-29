@@ -20,13 +20,13 @@ router.get('/', (req, res) => {
 
 router.post('/studentSignup', (req, res) => {
     let studentData = req.body;
-    console.log("Post Method Data : " + req.body);
+    // console.log("Post Method Data : " + req.body);
     let student = new Student(studentData)
     student.save((err, registeredStudent) => {
         if (err) {
             console.log(err)
         } else {
-            let payload = { subject: registeredStudent.email }
+            let payload = { subject: registeredStudent.email, accType: 'student', name: registeredStudent.name }
             let token = jwt.sign(payload, 'secretKey')
                 // let userEmail = registeredStudent.email
             res.status(200).send({ token })
@@ -46,7 +46,7 @@ router.post('/studentLogin', (req, res) => {
                 if (student.password !== studentData.password) {
                     res.status(400).send('Sorry! Invalid Password. Please try again.')
                 } else {
-                    let payload = { subject: student.email }
+                    let payload = { subject: student.email, accType: 'student', name: student.name }
                     let token = jwt.sign(payload, 'secretKey')
                         //
                         // let userEmail = student.email
@@ -59,8 +59,10 @@ router.post('/studentLogin', (req, res) => {
 })
 
 router.get('/specialTokenRequest', verifyToken, (req, res) => {
-    let userEmail = JSON.stringify(req.userEmail)
-    res.send(userEmail)
+    let userEmail = req.userEmail
+    let accType = req.accType
+    let name = req.name
+    res.send({ userEmail, accType, name })
 })
 
 function verifyToken(req, res, next) {
@@ -76,6 +78,8 @@ function verifyToken(req, res, next) {
         return res.status(401).send('Unauthorized request!')
     }
     req.userEmail = payload.subject
+    req.accType = payload.accType
+    req.name = payload.name
         // console.log(req.userId) 
     next()
 }

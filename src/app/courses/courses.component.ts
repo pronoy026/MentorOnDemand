@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
+  b=true
+  hold=5
+  datas=['g','j','k']
 
   constructor() { }
 

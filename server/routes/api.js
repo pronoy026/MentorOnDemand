@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const config = require('../config')
 const Student = require('../models/model_student')
+const Course = require('../models/model_courses')
 
 
 mongoose.connect(config.mongo_url, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
@@ -18,11 +19,12 @@ router.get('/', (req, res) => {
     res.send('From API route')
 })
 
-router.post('/studentSignup', (req, res) => {
+///////////////////////////////////////////////////////////////for student
+router.post('/studentSignup', async (req, res) => {
     let studentData = req.body;
     // console.log("Post Method Data : " + req.body);
     let student = new Student(studentData)
-    student.save((err, registeredStudent) => {
+    await student.save((err, registeredStudent) => {
         if (err) {
             console.log(err)
         } else {
@@ -57,6 +59,31 @@ router.post('/studentLogin', (req, res) => {
         }
     })
 })
+
+/////////////////////for courses
+router.post('/saveCourse', async (req, res) => {
+    let courseData = req.body;
+    // console.log("Post Method Data : " + req.body);
+    let course = new Course(courseData)
+    await course.save((err, registeredCourse) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(registeredCourse)
+        }
+    })
+})
+
+router.get('/courseAll', (req, res) => {
+    Course.find({}, (err, courses) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(courses)
+        }
+    })
+})
+
 
 router.get('/specialTokenRequest', verifyToken, (req, res) => {
     let userEmail = req.userEmail

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatashareService } from '../datashare.service';
 
 @Component({
   selector: 'app-courses',
@@ -6,13 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
-  b=true
-  hold=5
-  datas=['g','j','k']
-
-  constructor() { }
+  courseList
+  constructor( private _dataService : DatashareService) { }
 
   ngOnInit() {
+    this.getCourses()
+    console.log(this.courseList)
   }
-
+  getCourses() {
+      this._dataService.getAllCourses()
+        .subscribe(
+          res => this.courseList = res,
+          err => console.log(err)
+        )
+  }
+  selectMentor(data) {
+    console.log(data)
+  }
 }

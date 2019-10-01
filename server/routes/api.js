@@ -3,8 +3,11 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const config = require('../config')
+
+//models
 const Student = require('../models/model_student')
 const Course = require('../models/model_courses')
+const Admin = require('../models/model_admin')
 
 
 mongoose.connect(config.mongo_url, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
@@ -20,7 +23,7 @@ router.get('/', (req, res) => {
 })
 
 ///////////////////////////////////////////////////////////////for student
-router.post('/studentSignup', async (req, res) => {
+router.post('/studentSignup', async(req, res) => {
     let studentData = req.body;
     // console.log("Post Method Data : " + req.body);
     let student = new Student(studentData)
@@ -60,8 +63,9 @@ router.post('/studentLogin', (req, res) => {
     })
 })
 
-/////////////////////for courses
-router.post('/saveCourse', async (req, res) => {
+//for courses
+
+router.post('/saveCourse', async(req, res) => {
     let courseData = req.body;
     // console.log("Post Method Data : " + req.body);
     let course = new Course(courseData)
@@ -80,6 +84,33 @@ router.get('/courseAll', (req, res) => {
             console.log(err)
         } else {
             res.status(200).send(courses)
+        }
+    })
+})
+
+//for admin
+
+router.post('/adminLogin', (req, res) => {
+    let adminData = req.body
+    Admin.findOne({ email: adminData.email }, (err, admin) => {
+        if (err) {
+            console.log(err)
+        } else {
+            if (!admin) {
+                console.log('yes')
+                res.status(400).send('Sorry! Invalid Email. Please try again.')
+            } else {
+                if (admin.password !== adminData.password) {
+                    res.status(400).send('Sorry! Invalid Password. Please try again.')
+                } else {
+                    let payload = { subject: admin.email, accType: 'admin', name: admin.name }
+                    let token = jwt.sign(payload, 'secretKey')
+                        //
+                        // let userEmail = student.email
+                    res.status(200).send({ token })
+                }
+            }
+
         }
     })
 })

@@ -11,6 +11,7 @@ export class AuthService {
 
   private _registerStudentUrl = "http://localhost:3000/api/studentSignup"
   private _loginStudentUrl = "http://localhost:3000/api/studentLogin"
+  private _loginAdminUrl = "http://localhost:3000/api/adminLogin"
   private _specialTokenRequestUrl = "http://localhost:3000/api/specialTokenRequest"
 
 
@@ -26,6 +27,11 @@ export class AuthService {
 
   loggedIn() {
     return !!localStorage.getItem('token')  //a boolean value to check if the token is present or not
+  }
+
+  //admin
+  loginAdmin(admin) {
+    return this.http.post<any>(this._loginAdminUrl, admin)
   }
 
   logout() {

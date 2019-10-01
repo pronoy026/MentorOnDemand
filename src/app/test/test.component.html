@@ -9,7 +9,7 @@
                     {{_datashare.userName}}
                 </div>
                 <div class="sidebar">
-                    <a class="active" href="#home">Home</a>
+                    <a class="active" routerLink="/courses">Home</a>
                     <a href="#news">News</a>
                     <a href="#contact">Contact</a>
                     <a href="#about">About</a>
@@ -17,14 +17,7 @@
             </div>
         </div>
         <div class="col-md-10" style="background:darkgoldenrod">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, veritatis nobis
-                aliquid debitis quos quasi saepe fugit dolorem ad eveniet minima minus unde ipsam, vel soluta, dolore
-                excepturi deleniti ut?</p>
-            <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque sint dolore totam nesciunt in, laborum
-                magni unde distinctio earum reiciendis veritatis amet ipsam quos eligendi! Quod recusandae explicabo
-                nulla omnis.
-            </p>
+            <router-outlet></router-outlet>
         </div>
     </div>
 </div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 // import { MentorModel } from '../mentor-model';
 
 @Component({
@@ -8,14 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MentorsignupComponent implements OnInit {
 
-  constructor() { }
+  constructor( private _auth : AuthService, private _router : Router) { }
+
+  ngOnInit() {
+    if(this._auth.loggedIn()){
+      this._router.navigate(['/home'])
+    }
+  }
+
   public techs = ['Java','C++', 'Python', 'Javascript', 'Android', 'Full Stack Development'
                   ,'AngularJS', 'ReactJS','.Net','Ruby','Ios', 'Machine Learning',
                 'Deep Learning', 'Cloud Technology', 'IOT', 'DevOps', 'Business Management']
-
-  // mentorModel = new MentorModel('Pronoy', 'p@g.com', 9876543210, 3, "11-08-2018", "14-10-2018",   )
-
-  ngOnInit() {
-  }
 
 }

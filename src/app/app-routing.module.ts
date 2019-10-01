@@ -11,6 +11,8 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { SearchComponent } from './search/search.component';
 import { TestComponent } from './test/test.component';
 import { AuthGuard } from './auth.guard';
+import { AdminhomeComponent } from './adminhome/adminhome.component';
+import { MentorhomeComponent } from './mentorhome/mentorhome.component';
 
 
 const routes: Routes = [
@@ -23,7 +25,9 @@ const routes: Routes = [
   { path: 'courses', component: CoursesComponent },
   { path: 'contactus', component: ContactusComponent },
   { path: 'search', component: SearchComponent },
-  { path: 'test', component: TestComponent,canActivate: [AuthGuard] }, // Can route only after logging in
+  { path : 'adminhome', component : AdminhomeComponent, canActivate : [AuthGuard]},
+  { path : 'mentorhome', component : MentorhomeComponent , canActivate : [AuthGuard]},
+  { path: 'studenthome', component: TestComponent, canActivate: [AuthGuard] }, // Can route only after logging in
   { path: '**', component: PagenotfoundComponent }
 ];
 

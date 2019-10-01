@@ -21,6 +21,8 @@ import { TestComponent } from './test/test.component';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { DatashareService } from './datashare.service';
+import { AdminhomeComponent } from './adminhome/adminhome.component';
+import { MentorhomeComponent } from './mentorhome/mentorhome.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { DatashareService } from './datashare.service';
     ContactusComponent,
     SearchComponent,
     PagenotfoundComponent,
-    TestComponent
+    TestComponent,
+    AdminhomeComponent,
+    MentorhomeComponent,
   ],
   imports: [
     BrowserModule,

@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit {
         .subscribe(
           res => {
             this._datashare.userEmail = res.userEmail
+            this._datashare.accType = res.accType
             this._datashare.userTypeStudent = true
             this._datashare.userTypeMentor = false
             this._datashare.userTypeAdmin = false

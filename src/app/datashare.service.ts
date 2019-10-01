@@ -10,6 +10,7 @@ export class DatashareService {
   userTypeStudent : boolean
   userTypeMentor : boolean
   userTypeAdmin : boolean
+  accType : string
   userName : string
 
   private allCoursesUrl = "http://localhost:3000/api/courseAll"

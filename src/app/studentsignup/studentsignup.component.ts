@@ -14,6 +14,9 @@ export class StudentsignupComponent implements OnInit {
   registerStudentData = {name: "", email: "", phone: "", password: ""}
 
   ngOnInit() {
+    if(this._auth.loggedIn()) {
+      this._router.navigate(['/home'])
+    }
   }
 
   registerStudent() {

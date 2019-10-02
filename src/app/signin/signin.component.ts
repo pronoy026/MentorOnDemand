@@ -42,6 +42,18 @@ export class SigninComponent implements OnInit {
     else {
       if (this.signinType === "mentor") {               //Mentor Sign in
         console.log("Mentor Signin")
+        this._auth.loginMentor(this.signinData)
+            .subscribe(
+              res => {
+                console.log(res)
+                localStorage.setItem('token', res.token)
+                this._router.navigate(['/mentorhome'])
+              },
+              err => {
+                console.log(err)
+                this.message= err.error
+              }
+            )
       }
       else {
         console.log("Admin Signin")

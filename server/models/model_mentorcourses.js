@@ -1,15 +1,17 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const course = mongoose.model('course', new Schema({
+const mentorcourse = mongoose.model('mentorcourse', new Schema({
     name: String,
     description: String,
     fee: String,
     mentorEmail: String,
     mentorName: String,
     duration: String,
-    imageUrl: String
+    imageUrl: String,
+    nooftrainings: Number,
+    commision: Number,
 
-}), 'courses')
+}), 'mentorcourses')
 
-module.exports = course
+module.exports = mentorcourse

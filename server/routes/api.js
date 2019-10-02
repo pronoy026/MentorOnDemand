@@ -8,6 +8,8 @@ const config = require('../config')
 const Student = require('../models/model_student')
 const Course = require('../models/model_courses')
 const Admin = require('../models/model_admin')
+const Mentor = require('../models/model_mentor')
+const MentorCourse = require('../models/model_mentorcourses')
 
 
 mongoose.connect(config.mongo_url, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
@@ -87,6 +89,71 @@ router.get('/courseAll', (req, res) => {
         }
     })
 })
+
+//for mentor
+router.post('/mentorSignup', async(req, res) => {
+    let mentorData = req.body;
+    let MentorCourseData = {
+        name: req.body.technology,
+        description: String,
+        fee: req.body.fees,
+        mentorEmail: req.body.email,
+        mentorName: req.body.name,
+        duration: String,
+        imageUrl: String,
+        nooftrainings: req.body.nooftrainings,
+        commision: req.body.commision,
+    }
+
+    let mentor = new Mentor(mentorData)
+    let mentorCourse = new MentorCourse(MentorCourseData)
+
+    await mentor.save((err, registeredMentor) => {
+        if (err) {
+            console.log(err)
+        } else {
+            let payload = { subject: registeredMentor.email, accType: 'mentor', name: registeredMentor.name }
+            let token = jwt.sign(payload, 'secretKey')
+                // let userEmail = registeredStudent.email
+            res.status(200).send({ token })
+        }
+    })
+    mentorCourse.save((err, registeredCourse) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(registeredCourse)
+            console.log("Course Saved Successfully!")
+        }
+    })
+
+})
+
+router.post('/mentorLogin', (req, res) => {
+    let mentorData = req.body
+    Mentor.findOne({ email: mentorData.email }, (err, mentor) => {
+        if (err) {
+            console.log(err)
+        } else {
+            if (!mentor) {
+                res.status(400).send('Sorry! Invalid Email. Please try again.')
+            } else {
+                if (mentor.password !== mentorData.password) {
+                    res.status(400).send('Sorry! Invalid Password. Please try again.')
+                } else {
+                    let payload = { subject: mentor.email, accType: 'mentor', name: mentor.name }
+                    let token = jwt.sign(payload, 'secretKey')
+                        //
+                        // let userEmail = student.email
+                    res.status(200).send({ token })
+                }
+            }
+
+        }
+    })
+})
+
+
 
 //for admin
 

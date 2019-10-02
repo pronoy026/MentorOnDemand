@@ -56,6 +56,14 @@
 
             <!-- for mentor  -->
             <li class="nav-item">
+                <a class="nav-link" *ngIf='_authService.loggedIn() && _datashare.userTypeMentor' style="color:#00887a; cursor: pointer;" routerLink='/mentorhome'>Welcome! {{_datashare.userName}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" *ngIf='_authService.loggedIn() && _datashare.userTypeMentor' style="color:#fff; cursor: pointer;" routerLink='/mentorhome'>Dashboard</a>
+            </li>
+
+            <!-- for admin  -->
+            <li class="nav-item">
                 <a class="nav-link" *ngIf='_authService.loggedIn() && _datashare.userTypeAdmin' style="color:#00887a; cursor: pointer;" routerLink='/adminhome'>Welcome! {{_datashare.userName}}</a>
             </li>
             <li class="nav-item">

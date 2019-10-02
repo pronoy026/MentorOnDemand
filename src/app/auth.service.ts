@@ -11,6 +11,8 @@ export class AuthService {
 
   private _registerStudentUrl = "http://localhost:3000/api/studentSignup"
   private _loginStudentUrl = "http://localhost:3000/api/studentLogin"
+  private _registerMentorUrl = "http://localhost:3000/api/mentorSignup"
+  private _loginMentorUrl = "http://localhost:3000/api/mentorLogin"
   private _loginAdminUrl = "http://localhost:3000/api/adminLogin"
   private _specialTokenRequestUrl = "http://localhost:3000/api/specialTokenRequest"
 
@@ -21,8 +23,16 @@ export class AuthService {
     return this.http.post<any>(this._registerStudentUrl, student)
   }
 
+  registerMentor(mentor) {
+    return this.http.post<any>(this._registerMentorUrl, mentor)
+  }
+
   loginStudent(student) {
     return this.http.post<any>(this._loginStudentUrl, student)
+  }
+
+  loginMentor(mentor) {
+    return this.http.post<any>(this._loginMentorUrl, mentor)
   }
 
   loggedIn() {

@@ -1,160 +1,199 @@
 <div style="background: #00887a">
-<div class="container" style="padding-top: 10px; padding-bottom: 10px;">
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <div class="d-flex justify-content-center">
-                <div class="card shadow" style="padding: 50px; height: 100%; width: 500px">
-                    <form #mentorForm="ngForm">
-                        <div style="text-align: center">
-                            <h3 style="color: black">Sign Up as Mentor</h3>
-                        </div>
-                        <!-- Name -->
-                        <div class="form-group">
-                            <label for="mentorName">Name</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
-                                </div>
-                                <input type="text" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class="form-control" placeholder="Enter full name" id="mentorName" name="mentorName" ngModel required>
+    <div class="container" style="padding-top: 10px; padding-bottom: 10px;">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="d-flex justify-content-center">
+                    <div class="card shadow" style="padding: 50px; height: 100%; width: 500px">
+                        <form #mentorForm="ngForm">
+                            <div style="text-align: center">
+                                <h3 style="color: black">Sign Up as Mentor</h3>
                             </div>
-                            <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is
+                            <!-- Name -->
+                            <div class="form-group">
+                                <label for="mentorName">Name</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
+                                    </div>
+                                    <input type="text" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class="form-control" placeholder="Enter full name" id="mentorName" name="mentorName" [(ngModel)]="mentorData.name" required>
+                                </div>
+                                <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is
                                 required!</small>
-                        </div>
-                        <!-- email -->
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email Address</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-envelope"
+                            </div>
+                            <!-- email -->
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email Address</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-envelope"
                                             aria-hidden="true"></i></span>
+                                    </div>
+                                    <input type="text" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" #email="ngModel" [class.is-invalid]="email.invalid && email.touched" class="form-control" placeholder="Enter your email" id="mentorEmail" name="mentorEmail" [(ngModel)]="mentorData.email"
+                                        required>
                                 </div>
-                                <input type="text" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" #email="ngModel" [class.is-invalid]="email.invalid && email.touched" class="form-control" placeholder="Enter your email" id="mentorEmail" name="mentorEmail" ngModel
-                                    required>
+                                <small class="text-danger" [class.d-none]=" email.valid || email.untouched">Please enter valid email address!</small>
                             </div>
-                            <small class="text-danger" [class.d-none]=" email.valid || email.untouched">Please enter valid email address!</small>
-                        </div>
-                        <!-- phone no -->
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Phone No</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                            <!-- phone no -->
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Phone No</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                                    </div>
+                                    <input type="tel" pattern="^\d{10}$" #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" class="form-control" placeholder="e.g. - 9876543210" id="mentorPhoneNo" name="mentorPhoneNo" [(ngModel)]="mentorData.phone" required>
                                 </div>
-                                <input type="tel" pattern="^\d{10}$" #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" class="form-control" placeholder="e.g. - 9876543210" id="mentorPhoneNo" name="mentorPhoneNo" ngModel required>
-                            </div>
-                            <small class="text-danger" [class.d-none]="phone.valid || phone.untouched ">Enter valid
+                                <small class="text-danger" [class.d-none]="phone.valid || phone.untouched ">Enter valid
                                 Phone No of 10 digits.</small>
-                        </div>
-                        <!-- experience in years -->
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Experience in years</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-arrow-circle-o-up"
-                                            aria-hidden="true"></i></span>
-                                </div>
-                                <input type="text" class="form-control" #exp="ngModel" placeholder="e.g.- 5" id="mentorYearsOfExp" name="mentorYearsOfExp" ngModel required>
                             </div>
-                            <small class="text-danger" [class.d-none]="exp.valid || exp.untouched ">This field is
+                            <!-- experience in years -->
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Experience in years</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-arrow-circle-o-up"
+                                            aria-hidden="true"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" #exp="ngModel" placeholder="e.g.- 5" id="mentorYearsOfExp" name="mentorYearsOfExp" [(ngModel)]="mentorData.experience" required>
+                                </div>
+                                <small class="text-danger" [class.d-none]="exp.valid || exp.untouched ">This field is
                                 required!</small>
-                        </div>
-
-                        <!-- menor availability -->
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Mentor Available From</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-calendar-o"
-                                            aria-hidden="true"></i></span>
-                                </div>
-                                <input type="date" class="form-control" #startd="ngModel" placeholder="Start Date" id="mentorStartDate" name="mentorStartDate" ngModel required>
                             </div>
-                            <small class="text-danger" [class.d-none]="startd.valiid || startd.untouched">Enter start
+
+                            <!-- menor availability -->
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Mentor Available From</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-calendar-o"
+                                            aria-hidden="true"></i></span>
+                                    </div>
+                                    <input type="date" class="form-control" #startd="ngModel" placeholder="Start Date" id="mentorStartDate" name="mentorStartDate" [(ngModel)]="mentorData.startdate" required>
+                                </div>
+                                <small class="text-danger" [class.d-none]="startd.valid || startd.untouched">Enter start
                                 date!</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">To</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-calendar-o"
-                                            aria-hidden="true"></i></span>
-                                </div>
-                                <input type="date" #enddate="ngModel" class="form-control" placeholder="End Date" id="mentorEndDate" name="mentorEndDate" ngModel required>
                             </div>
-                            <small class="text-danger" [class.d-none]="enddate.valid || enddate.untouched">Enter end
-                                date.</small>
-                        </div>
-
-                        <!-- technology -->
-                        <div class="form-group">
-                            <label for="selectTechType">Technology</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-sort" aria-hidden="true"></i></span>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">To</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-calendar-o"
+                                            aria-hidden="true"></i></span>
+                                    </div>
+                                    <input type="date" #enddate="ngModel" class="form-control" placeholder="End Date" id="mentorEndDate" name="mentorEndDate" [(ngModel)]="mentorData.enddate" required>
                                 </div>
-                                <select class="form-control" #tech="ngModel" id="selectTechType" name="selectTechType" ngModel required>
+                                <small class="text-danger" [class.d-none]="enddate.valid || enddate.untouched">Enter end
+                                date.</small>
+                            </div>
+
+                            <!-- technology -->
+                            <div class="form-group">
+                                <label for="selectTechType">Technology</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-sort" aria-hidden="true"></i></span>
+                                    </div>
+                                    <select class="form-control" #tech="ngModel" id="selectTechType" name="selectTechType" [(ngModel)]="mentorData.technology" required>
                                     <option *ngFor="let tech of techs">{{ tech }}</option>
                                 </select>
-                            </div>
-                            <small class="text-danger" [class.d-none]="tech.valid || tech.untouched "> Please select a
+                                </div>
+                                <small class="text-danger" [class.d-none]="tech.valid || tech.untouched "> Please select a
                                 technology.</small>
-                        </div>
+                            </div>
 
-                        <!-- LinkedIn url -->
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">LinkedIn Url</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-linkedin"
+                            <!-- fee charged -->
+                            <div class="form-group">
+                                <label for="mentorName">Fees</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-money" aria-hidden="true"></i></span>
+                                    </div>
+                                    <input type="number" #fee="ngModel" [class.is-invalid]="fee.invalid && fee.touched" class="form-control" placeholder="Enter fees" id="mentorFees" name="mentorFees" [(ngModel)]="mentorData.fees" required>
+                                </div>
+                                <small class="text-danger" [class.d-none]="fee.valid || fee.untouched">Fees field is
+                                required!</small>
+                            </div>
+
+                            <!-- commision -->
+                            <div class="form-group">
+                                <label for="mentorName">Commision</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-money" aria-hidden="true"></i></span>
+                                    </div>
+                                    <input type="number" #com="ngModel" [class.is-invalid]="com.invalid && com.touched" class="form-control" placeholder="Enter commision" id="mentorCommision" name="mentorCommision" [(ngModel)]="mentorData.commision" required>
+                                </div>
+                                <small class="text-danger" [class.d-none]="com.valid || com.untouched">commision field is
+                                required!</small>
+                            </div>
+
+                            <!-- No of trainings completed -->
+                            <div class="form-group">
+                                <label for="mentorName">No of Trainings completed</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-list" aria-hidden="true"></i></span>
+                                    </div>
+                                    <input type="number" #noof="ngModel" [class.is-invalid]="noof.invalid && noof.touched" class="form-control" placeholder="No of trainings completed" id="mentorNoOfTrainings" name="mentorNoOfTrainings" [(ngModel)]="mentorData.nooftrainings" required>
+                                </div>
+                                <small class="text-danger" [class.d-none]="noof.valid || noof.untouched">No of trainings field is
+                                required!</small>
+                            </div>
+
+                            <!-- LinkedIn url -->
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">LinkedIn Url</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-linkedin"
                                             aria-hidden="true"></i></span>
+                                    </div>
+                                    <input type="url" class="form-control" #linked="ngModel" placeholder="https://linkedin.com/username" id="mentorLinkedinUrl" name="mentorLinkedinUrl" [(ngModel)]="mentorData.linkedin" required>
                                 </div>
-                                <input type="url" class="form-control" #linked="ngModel" placeholder="https://linkedin.com/username" id="mentorLinkedinUrl" name="mentorLinkedinUrl" ngModel required>
-                            </div>
-                            <small class="text-danger" [class.d-none]="linked.valid || linked.untouched">Please enter
+                                <small class="text-danger" [class.d-none]="linked.valid || linked.untouched">Please enter
                                 your linkedin url.</small>
-                        </div>
-                        <!-- password -->
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></span>
-                                </div>
-                                <input type="password" class="form-control" #password="ngModel" id="passwordSignIn" placeholder="Create password" id="mentorPassword" name="mentorPassword" ngModel required>
                             </div>
-                            <small class="text-danger" [class.d-none]="password.valid || password.untouched">Please
+                            <!-- password -->
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control" #password="ngModel" id="passwordSignIn" placeholder="Create password" id="mentorPassword" name="mentorPassword" [(ngModel)]="mentorData.password" required>
+                                </div>
+                                <small class="text-danger" [class.d-none]="password.valid || password.untouched">Please
                                 enter a new password.</small>
-                        </div>
-                        <!-- confirm password -->
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Confirm Password</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></span>
-                                </div>
-                                <input type="password" class="form-control" id="passwordSignIn" #confirmPassword="ngModel" placeholder="Confirm password" id="mentorConfirmPassword" name="mentorConfirmPassword" ngModel required>
                             </div>
-                            <small class="text-danger" *ngIf="confirmPassword.touched && password.value!=confirmPassword.value && !confirmPassword.errors?.required">Password and
+                            <!-- confirm password -->
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Confirm Password</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control" id="passwordSignIn" #confirmPassword="ngModel" placeholder="Confirm password" id="mentorConfirmPassword" name="mentorConfirmPassword" ngModel required>
+                                </div>
+                                <small class="text-danger" *ngIf="confirmPassword.touched && password.value!=confirmPassword.value && !confirmPassword.errors?.required">Password and
                                 Confirm password should be same!</small>
-                            <small class="text-danger" [class.d-none]="confirmPassword.valid || confirmPassword.untouched">Please confirm your password.</small>
-                        </div>
-                        <!-- agree to terms and conditions form check -->
-                        <div class="form-check mb-3">
-                            <input type="checkbox" class="form-check-input" #mcheck="ngModel" id="mentorSignupCheck" name="mentorSignupCheck" ngModel required>
-                            <label class="form-check-label" for="exampleCheck1">Agree to the <a href="#">terms and
+                                <small class="text-danger" [class.d-none]="confirmPassword.valid || confirmPassword.untouched">Please confirm your password.</small>
+                            </div>
+                            <!-- agree to terms and conditions form check -->
+                            <div class="form-check mb-3">
+                                <input type="checkbox" class="form-check-input" #mcheck="ngModel" id="mentorSignupCheck" name="mentorSignupCheck" ngModel required>
+                                <label class="form-check-label" for="exampleCheck1">Agree to the <a href="#">terms and
                                     conditions</a></label>
-                            <div>
-                                <small class="text-danger" [class.d-none]="mcheck.valid || mcheck.pristine">Please
+                                <div>
+                                    <small class="text-danger" [class.d-none]="mcheck.valid || mcheck.pristine">Please
                                     agree
                                     to the terms and conditions</small>
+                                </div>
                             </div>
-                        </div>
-                        <button [disabled]="mentorForm.form.invalid" type="submit" class="btn btn-outline-primary">Create Account</button>
-                    </form>
+                            <button [disabled]="mentorForm.form.invalid" type="submit" class="btn btn-outline-primary" (click)="mentorRegister()">Create Account</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>

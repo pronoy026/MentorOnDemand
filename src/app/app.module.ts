@@ -23,6 +23,8 @@ import { TokenInterceptorService } from './token-interceptor.service';
 import { DatashareService } from './datashare.service';
 import { AdminhomeComponent } from './adminhome/adminhome.component';
 import { MentorhomeComponent } from './mentorhome/mentorhome.component';
+import { StudentappliedcoursesComponent } from './studentappliedcourses/studentappliedcourses.component';
+import { StudentregisteredcoursesComponent } from './studentregisteredcourses/studentregisteredcourses.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { MentorhomeComponent } from './mentorhome/mentorhome.component';
     TestComponent,
     AdminhomeComponent,
     MentorhomeComponent,
+    StudentappliedcoursesComponent,
+    StudentregisteredcoursesComponent,
   ],
   imports: [
     BrowserModule,

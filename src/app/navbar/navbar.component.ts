@@ -21,9 +21,21 @@ export class NavbarComponent implements OnInit {
           res => {
             this._datashare.userEmail = res.userEmail
             this._datashare.accType = res.accType
-            this._datashare.userTypeStudent = true
-            this._datashare.userTypeMentor = false
-            this._datashare.userTypeAdmin = false
+            if (res.accType == "student") {
+              this._datashare.userTypeStudent = true
+              this._datashare.userTypeMentor = false
+              this._datashare.userTypeAdmin = false
+            }
+            if (res.accType == "mentor") {
+              this._datashare.userTypeStudent = false
+              this._datashare.userTypeMentor = true
+              this._datashare.userTypeAdmin = false
+            }
+            if (res.accType == "admin") {
+              this._datashare.userTypeStudent = false
+              this._datashare.userTypeMentor = false
+              this._datashare.userTypeAdmin = true
+            }
             this._datashare.userName = res.name.split(' ')[0]
             console.log(res)
           },

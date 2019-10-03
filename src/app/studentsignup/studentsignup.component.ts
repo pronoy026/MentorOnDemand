@@ -26,7 +26,7 @@ export class StudentsignupComponent implements OnInit {
           res => {
             console.log(res)
             localStorage.setItem('token', res.token)
-            this._router.navigate(['/test'])
+            this._router.navigate(['/studenthome'])
           },
           err => console.log(err)
       )

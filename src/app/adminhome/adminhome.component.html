@@ -1,1 +1,23 @@
-<p>adminhome works!</p>
+<div>
+    <div class="row">
+        <div class="col-md-2" style="padding: 20px;">
+            <div>
+                <div class="d-flex justify-content-center">
+                    <img src="../../assets/admin.jpg" style="height: 100px; width:170px">
+                </div>
+                <div style="text-align: center; padding-bottom: 20px; color: #0066ff;">
+                    {{_datashare.userName}}
+                </div>
+                <div class="sidebar">
+                    <a routerLink="/adminhome/allstudents">All Students</a>
+                    <a routerLink="/adminhome/allmentors">All Mentors</a>
+                    <a routerLink="/adminhome/allcourses">All Courses</a>
+                    <a routerLink="/adminhome/addcourse">Add a Course</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

@@ -15,6 +15,10 @@ import { AdminhomeComponent } from './adminhome/adminhome.component';
 import { MentorhomeComponent } from './mentorhome/mentorhome.component';
 import { StudentappliedcoursesComponent } from './studentappliedcourses/studentappliedcourses.component';
 import { StudentregisteredcoursesComponent } from './studentregisteredcourses/studentregisteredcourses.component';
+import { AllstudentsComponent } from './allstudents/allstudents.component';
+import { AllcoursesComponent } from './allcourses/allcourses.component';
+import { AllmentorsComponent } from './allmentors/allmentors.component';
+import { AddcourseComponent } from './addcourse/addcourse.component';
 
 
 const routes: Routes = [
@@ -27,18 +31,29 @@ const routes: Routes = [
   { path: 'courses', component: CoursesComponent },
   { path: 'contactus', component: ContactusComponent },
   { path: 'search', component: SearchComponent },
-  { path: 'adminhome', component: AdminhomeComponent, canActivate: [AuthGuard] },
+  {
+    path: 'adminhome',
+    component: AdminhomeComponent,
+    children: [
+      { path: 'allstudents', component: AllstudentsComponent },
+      { path: 'allcourses', component: AllcoursesComponent },
+      { path: 'allmentors', component: AllmentorsComponent },
+      { path: 'addcourse', component: AddcourseComponent }
+    ],
+    canActivate: [AuthGuard]
+  },
+
   { path: 'mentorhome', component: MentorhomeComponent, canActivate: [AuthGuard] },
 
   {
     path: 'studenthome',
     component: TestComponent,
-    children : [
+    children: [
       {
-        path: 'studentappliedcourses', component : StudentappliedcoursesComponent
+        path: 'studentappliedcourses', component: StudentappliedcoursesComponent
       },
       {
-        path : 'studentregisteredcourses', component : StudentregisteredcoursesComponent
+        path: 'studentregisteredcourses', component: StudentregisteredcoursesComponent
       }
 
     ],

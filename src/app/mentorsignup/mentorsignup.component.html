@@ -54,7 +54,7 @@
                                         <span class="input-group-text"><i class="fa fa-arrow-circle-o-up"
                                             aria-hidden="true"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" #exp="ngModel" placeholder="e.g.- 5" id="mentorYearsOfExp" name="mentorYearsOfExp" [(ngModel)]="mentorData.experience" required>
+                                    <input type="number" class="form-control" #exp="ngModel" placeholder="e.g.- 5" id="mentorYearsOfExp" name="mentorYearsOfExp" [(ngModel)]="mentorData.experience" required>
                                 </div>
                                 <small class="text-danger" [class.d-none]="exp.valid || exp.untouched ">This field is
                                 required!</small>

@@ -34,7 +34,7 @@ export class MentorsignupComponent implements OnInit {
   }
 
   public techs = ['Java','C++', 'Python', 'Javascript', 'Android', 'Full Stack Development'
-                  ,'AngularJS', 'ReactJS','.Net','Ruby','Ios', 'Machine Learning',
+                  ,'Angular', 'React','.Net','Ruby','Ios', 'Machine Learning',
                 'Deep Learning', 'Cloud Technology', 'IOT', 'DevOps', 'Business Management']
 
 }

@@ -1,0 +1,23 @@
+<div class="container">
+    <div style="padding-top: 20px">
+    <h4 style="color: #00887a;text-align: center; font-family: fantasy">All Students</h4>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone No</th>
+            </tr>
+        </thead>
+        <tbody *ngFor ="let student of allStudents; let i = index">
+            <tr>
+                <td>{{i+1}}</td>
+                <td>{{student.name}}</td>
+                <td>{{student.email}}</td>
+                <td>{{student.phone}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>

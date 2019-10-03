@@ -25,6 +25,10 @@ import { AdminhomeComponent } from './adminhome/adminhome.component';
 import { MentorhomeComponent } from './mentorhome/mentorhome.component';
 import { StudentappliedcoursesComponent } from './studentappliedcourses/studentappliedcourses.component';
 import { StudentregisteredcoursesComponent } from './studentregisteredcourses/studentregisteredcourses.component';
+import { AllstudentsComponent } from './allstudents/allstudents.component';
+import { AllcoursesComponent } from './allcourses/allcourses.component';
+import { AddcourseComponent } from './addcourse/addcourse.component';
+import { AllmentorsComponent } from './allmentors/allmentors.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +49,10 @@ import { StudentregisteredcoursesComponent } from './studentregisteredcourses/st
     MentorhomeComponent,
     StudentappliedcoursesComponent,
     StudentregisteredcoursesComponent,
+    AllstudentsComponent,
+    AllcoursesComponent,
+    AddcourseComponent,
+    AllmentorsComponent,
   ],
   imports: [
     BrowserModule,

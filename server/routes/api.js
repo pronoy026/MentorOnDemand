@@ -90,19 +90,31 @@ router.get('/courseAll', (req, res) => {
     })
 })
 
+router.get('/allMentorCourses', (req, res) => {
+    MentorCourse.find({}, (err, mentorcourses) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(mentorcourses)
+        }
+    })
+})
+
 //for mentor
 router.post('/mentorSignup', async(req, res) => {
     let mentorData = req.body;
     let MentorCourseData = {
         name: req.body.technology,
-        description: String,
+        description: "description",
         fee: req.body.fees,
         mentorEmail: req.body.email,
         mentorName: req.body.name,
-        duration: String,
-        imageUrl: String,
+        duration: 5,
+        imageUrl: "imageurl",
         nooftrainings: req.body.nooftrainings,
         commision: req.body.commision,
+        rating : 4,
+        expYears : req.body.experience
     }
 
     let mentor = new Mentor(mentorData)
@@ -181,6 +193,39 @@ router.post('/adminLogin', (req, res) => {
         }
     })
 })
+
+router.get('/allMentors', (req, res) => {
+    Mentor.find({}, (err, mentors) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(mentors)
+        }
+    })
+})
+
+router.get('/allStudents', (req, res) => {
+    Student.find({}, (err, students) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(students)
+        }
+    })
+})
+
+router.get('/allCourses', (req, res) => {
+    MentorCourse.find({}, (err, courses) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(courses)
+        }
+    })
+})
+
+
+
 
 
 router.get('/specialTokenRequest', verifyToken, (req, res) => {

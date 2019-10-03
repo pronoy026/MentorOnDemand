@@ -2,8 +2,7 @@
     <div class="card-custom" *ngFor="let course of mentorCourseList">
         <div class="card" style="border-radius: 25px;">
             <div class="card-img d-flex justify-content-center" style="padding-top: 10px ">
-                <img class="rounded-circle" src="{{course.imageUrl}}" alt="{{course.name}}"
-                    style="height: 150px; width :170px">
+                <img class="rounded-circle" src="{{course.imageUrl}}" alt="{{course.name}}" style="height: 150px; width :170px">
             </div>
             <div class="card-body">
                 <h4 class="card-title" style="color: darkblue; text-align: center">{{course.name}}</h4>
@@ -14,8 +13,7 @@
                     <h5 style="color: black; text-align: center"> Duration : {{course.duration}} weeks</h5>
                 </div>
                 <div>
-                    <h5 style="color: #00887a; cursor: pointer;; text-align: center; font-family: fantasy"><a
-                            data-toggle="modal" data-target="#myModal" (click)="modalDataChange(course)"> Mentor : {{course.mentorName}} </a></h5>
+                    <h5 style="color: #00887a; cursor: pointer;; text-align: center; font-family: fantasy"><a data-toggle="modal" data-target="#myModal" (click)="modalDataChange(course)"> Mentor : {{course.mentorName}} </a></h5>
                 </div>
                 <!-- modal -->
                 <div class="modal fade" id="myModal">

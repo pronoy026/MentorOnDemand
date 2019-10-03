@@ -19,7 +19,7 @@
                     <td>{{mentor.email}}</td>
                     <td>{{mentor.technology}}</td>
                     <td>{{mentor.phone}}</td>
-                    <td><button class="btn btn-outline-danger" (click)="blockMentor(mentor)">Block</button>&nbsp;&nbsp;
+                    <td><button class="btn btn-outline-success" (click)="unblockMentor(mentor)">Unblock</button>&nbsp;&nbsp;
                         <button class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal" (click)="modalDataChange(mentor)">See Profile</button></td>
 
 
@@ -53,14 +53,9 @@
                     </div>
                     <!-- modal -->
 
-
-
-
-
-
                 </tr>
             </tbody>
         </table>
-        <div *ngIf="!tabletoggler" style="text-align: center; color:#0066ff;padding-top:100px ;"> There is no valid mentor!</div>
+        <div *ngIf="!tabletoggler" style="text-align: center; color:#0066ff;padding-top:100px ;"> There is no blocked mentor!</div>
     </div>
 </div>

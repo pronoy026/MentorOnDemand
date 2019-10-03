@@ -1,6 +1,6 @@
 <div class="container">
     <div style="padding-top: 20px">
-        <h4 style="color: #00887a;text-align: center; font-family: fantasy">All Students</h4>
+        <h4 style="color: #00887a;text-align: center; font-family: fantasy">Blocked Students</h4>
         <table *ngIf="tabletoggler" class="table">
             <thead class="thead-dark">
                 <tr>
@@ -17,10 +17,10 @@
                     <td>{{student.name}}</td>
                     <td>{{student.email}}</td>
                     <td>{{student.phone}}</td>
-                    <td><button class="btn btn-outline-danger" (click)="blockStudent(student)">Block</button></td>
+                    <td><button class="btn btn-outline-success" (click)="unblockStudent(student)">Unblock</button></td>
                 </tr>
             </tbody>
         </table>
-        <div *ngIf="!tabletoggler" style="text-align: center; color:#0066ff;padding-top:100px ;"> There is no valid student as a user!</div>
+        <div *ngIf="!tabletoggler" style="text-align: center; color:#0066ff;padding-top:100px ;"> There is no blocked student!</div>
     </div>
 </div>

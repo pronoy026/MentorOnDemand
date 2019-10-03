@@ -19,6 +19,8 @@ import { AllstudentsComponent } from './allstudents/allstudents.component';
 import { AllcoursesComponent } from './allcourses/allcourses.component';
 import { AllmentorsComponent } from './allmentors/allmentors.component';
 import { AddcourseComponent } from './addcourse/addcourse.component';
+import { BlockedstudentsComponent } from './blockedstudents/blockedstudents.component';
+import { BlockedmentorsComponent } from './blockedmentors/blockedmentors.component';
 
 
 const routes: Routes = [
@@ -38,7 +40,9 @@ const routes: Routes = [
       { path: 'allstudents', component: AllstudentsComponent },
       { path: 'allcourses', component: AllcoursesComponent },
       { path: 'allmentors', component: AllmentorsComponent },
-      { path: 'addcourse', component: AddcourseComponent }
+      { path: 'addcourse', component: AddcourseComponent },
+      { path: 'blockedstudents', component: BlockedstudentsComponent},
+      { path: 'blockedmentors', component: BlockedmentorsComponent}
     ],
     canActivate: [AuthGuard]
   },

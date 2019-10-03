@@ -6,10 +6,13 @@ const config = require('../config')
 
 //models
 const Student = require('../models/model_student')
+const BlockedStudent = require('../models/blocked_students')
 const Course = require('../models/model_courses')
 const Admin = require('../models/model_admin')
 const Mentor = require('../models/model_mentor')
+const BlockedMentor = require('../models/blocked_mentors')
 const MentorCourse = require('../models/model_mentorcourses')
+const BlockedCourse = require('../models/blocked_courses')
 
 
 mongoose.connect(config.mongo_url, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
@@ -65,7 +68,170 @@ router.post('/studentLogin', (req, res) => {
     })
 })
 
+// blocked cases student
+
+router.post('/blockstudent', async(req, res) => {
+    let studentData = req.body;
+    let blockedstudent = new BlockedStudent(studentData)
+    await blockedstudent.save((err, student) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(student)
+        }
+    })
+    await Student.deleteOne({ email: studentData.email }, (err, data) => {
+        if (err) console.log(err)
+        else {
+            console.log("deleted successfully")
+        }
+    })
+})
+
+router.post('/unblockstudent', async(req, res) => {
+    let studentData = req.body;
+    let student = new Student(studentData)
+    await student.save((err, regstudent) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(regstudent)
+        }
+    })
+    await BlockedStudent.deleteOne({ email: studentData.email }, (err, data) => {
+        if (err) console.log(err)
+        else {
+            console.log("unblocked successfully")
+        }
+    })
+})
+
+router.get('/allblockedstudents', (req, res) => {
+    BlockedStudent.find({}, (err, students) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(students)
+        }
+    })
+})
+
+// blocked cases mentor
+
+router.post('/blockmentor', async(req, res) => {
+    let mentorData = req.body;
+    let blockedmentor = new BlockedMentor(mentorData)
+
+    await blockedmentor.save((err, mentor) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(mentor)
+        }
+    })
+    await Mentor.deleteOne({ email: mentorData.email }, (err, data) => {
+        if (err) console.log(err)
+        else {
+            console.log("deleted successfully")
+        }
+    })
+
+    //find related course using mentor email
+    //add it to blocked courses
+    //delete course data
+
+})
+
+router.post('/blockcourse', async(req, res) => {
+    let courseData = req.body;
+    let blockedcourse = new BlockedCourse(courseData)
+
+    await blockedcourse.save((err, course) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(course)
+        }
+    })
+
+    await MentorCourse.deleteOne({ mentorEmail: courseData.mentorEmail }, (err, data) => {
+        if (err) console.log(err)
+        else {
+            console.log("course deleted successfully")
+        }
+    })
+})
+
+
+
+router.post('/unblockmentor', async(req, res) => {
+    let mentorData = req.body;
+    let mentor = new Mentor(mentorData)
+
+    await mentor.save((err, regmentor) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(regmentor)
+        }
+    })
+    await BlockedMentor.deleteOne({ email: mentorData.email }, (err, data) => {
+        if (err) console.log(err)
+        else {
+            console.log("unblocked successfully")
+        }
+    })
+
+    //find related course using mentor email from blocked course
+    //add it to courses
+    //delete blocked course data
+})
+
+router.post('/unblockcourse', async(req, res) => {
+    let courseData = req.body
+    let mentorcourse = new MentorCourse(courseData)
+
+    await mentorcourse.save((err, course) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(course)
+        }
+    })
+
+    await BlockedCourse.deleteOne({ mentorEmail: courseData.mentorEmail }, (err, data) => {
+        if (err) console.log(err)
+        else {
+            console.log("blocked course deleted successfully")
+        }
+    })
+})
+
+router.get('/allblockedmentors', (req, res) => {
+    BlockedMentor.find({}, (err, mentors) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(mentors)
+        }
+    })
+})
+
+
+
+
 //for courses
+
+router.get('/onecourse', async(req, res) => {
+    let data = req.body
+    MentorCourse.findOne({ mentorEmail: data.mentorEmail }, (err, course) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(course)
+        }
+    })
+})
 
 router.post('/saveCourse', async(req, res) => {
     let courseData = req.body;
@@ -113,8 +279,8 @@ router.post('/mentorSignup', async(req, res) => {
         imageUrl: "imageurl",
         nooftrainings: req.body.nooftrainings,
         commision: req.body.commision,
-        rating : 4,
-        expYears : req.body.experience
+        rating: 4,
+        expYears: req.body.experience
     }
 
     let mentor = new Mentor(mentorData)

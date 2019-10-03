@@ -4,11 +4,11 @@ import { BlockService } from '../block.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-allmentors',
-  templateUrl: './allmentors.component.html',
-  styleUrls: ['./allmentors.component.scss']
+  selector: 'app-blockedmentors',
+  templateUrl: './blockedmentors.component.html',
+  styleUrls: ['./blockedmentors.component.scss']
 })
-export class AllmentorsComponent implements OnInit {
+export class BlockedmentorsComponent implements OnInit {
 
   mentorList
   tabletoggler : boolean
@@ -28,20 +28,20 @@ export class AllmentorsComponent implements OnInit {
   constructor(private _datashare: DatashareService, private _block: BlockService, private _router: Router) { }
 
   ngOnInit() {
+    this._block.allBlockedMentors()
+        .subscribe(
+          res => {
+            this.mentorList = res
 
-    this._datashare.getAllMentors()
-      .subscribe(
-        res => {
-          this.mentorList = res
-          if (this.mentorList.length==0) {
-            this.tabletoggler = false
-          } else {
-            this.tabletoggler = true
-          }
+            if(this.mentorList.length==0) {
+              this.tabletoggler = false
+            } else {
+              this.tabletoggler =true
+            }
+          },
+          err => console.log(err)
+        )
 
-        },
-        err => console.log(err)
-      )
   }
 
   modalDataChange(data) {
@@ -58,15 +58,15 @@ export class AllmentorsComponent implements OnInit {
     this.linkedin = data.linkedin
   }
 
-  blockMentor(mentor) {
-    this._block.blockMentor(mentor)
-      .subscribe(
-        res => {
-          console.log('blocked')
-          this._router.navigate(['/adminhome/blockedmentors'])
-        },
-        err => console.log(err)
-      )
+  unblockMentor(mentor) {
+    this._block.unblockMentor(mentor)
+        .subscribe(
+          res => {
+            console.log('unblocked mentor')
+            this._router.navigate(['/adminhome/allmentors'])
+          },
+          err => console.log(err)
+        )
   }
 
 }

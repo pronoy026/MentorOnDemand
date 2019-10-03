@@ -29,6 +29,9 @@ import { AllstudentsComponent } from './allstudents/allstudents.component';
 import { AllcoursesComponent } from './allcourses/allcourses.component';
 import { AddcourseComponent } from './addcourse/addcourse.component';
 import { AllmentorsComponent } from './allmentors/allmentors.component';
+import { BlockService } from './block.service';
+import { BlockedstudentsComponent } from './blockedstudents/blockedstudents.component';
+import { BlockedmentorsComponent } from './blockedmentors/blockedmentors.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +56,8 @@ import { AllmentorsComponent } from './allmentors/allmentors.component';
     AllcoursesComponent,
     AddcourseComponent,
     AllmentorsComponent,
+    BlockedstudentsComponent,
+    BlockedmentorsComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +65,7 @@ import { AllmentorsComponent } from './allmentors/allmentors.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService, AuthGuard, DatashareService,
+  providers: [AuthService, AuthGuard, DatashareService, BlockService,
   { provide : HTTP_INTERCEPTORS, useClass : TokenInterceptorService, multi : true }],
   bootstrap: [AppComponent]
 })

@@ -10,40 +10,55 @@ import { Router } from '@angular/router';
 export class BlockedstudentsComponent implements OnInit {
 
   allStudents
-  empty=[]
-  tabletoggler : boolean
+  empty = []
+  tabletoggler: boolean
 
-  constructor( private _block : BlockService, private _router : Router) { }
+  constructor(private _block: BlockService, private _router: Router) { }
 
   ngOnInit() {
 
     this._block.allBlockedStudents()
-        .subscribe(
-          res =>{ 
-            this.allStudents =res
-            console.log(this.allStudents.length)
-            if(this.allStudents.length==0) {
-              this.tabletoggler=false
-            }
-            else {
-              this.tabletoggler=true
-            }
+      .subscribe(
+        res => {
+          this.allStudents = res
+          console.log(this.allStudents.length)
+          if (this.allStudents.length == 0) {
+            this.tabletoggler = false
+          }
+          else {
+            this.tabletoggler = true
+          }
 
-          },
-          err => console.log(err)
-        )
+        },
+        err => console.log(err)
+      )
 
   }
 
   unblockStudent(student) {
     this._block.unblockStudent(student)
-        .subscribe(
-          res =>{
-            console.log('unblocked')
-            this._router.navigate(['/adminhome/allstudents'])
-          },
-          err => console.log(err)
-        )
+      .subscribe(
+        res => {
+          console.log('unblocked')
+          this._block.allBlockedStudents()
+            .subscribe(
+              res => {
+                this.allStudents = res
+                console.log(this.allStudents.length)
+                if (this.allStudents.length == 0) {
+                  this.tabletoggler = false
+                }
+                else {
+                  this.tabletoggler = true
+                }
+
+              },
+              err => console.log(err)
+            )
+          // this._router.navigate(['/adminhome/allstudents'])
+        },
+        err => console.log(err)
+      )
   }
 
 }

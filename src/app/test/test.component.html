@@ -9,13 +9,13 @@
                     {{_datashare.userName}}
                 </div>
                 <div class="sidebar">
-                    <a class="active" routerLink="active" routerLink="/studenthome/studentregisteredcourses">Registered courses</a>
-                    <a routerLink="/studenthome/studentappliedcourses">Applied courses</a>
-                    <a href="">Edit profile</a>
+                    <a routerLink="/studenthome/studentregisteredcourses" routerLinkActive="active">Registered courses</a>
+                    <a routerLink="/studenthome/studentappliedcourses" routerLinkActive="active">Applied courses</a>
+                    <a href="" routerLinkActive="active">Edit profile</a>
                 </div>
             </div>
         </div>
-        <div class="col-md-10" style="background:darkgoldenrod">
+        <div class="col-md-10">
             <router-outlet></router-outlet>
         </div>
     </div>

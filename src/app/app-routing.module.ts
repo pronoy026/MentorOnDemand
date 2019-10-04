@@ -21,6 +21,7 @@ import { AllmentorsComponent } from './allmentors/allmentors.component';
 import { AddcourseComponent } from './addcourse/addcourse.component';
 import { BlockedstudentsComponent } from './blockedstudents/blockedstudents.component';
 import { BlockedmentorsComponent } from './blockedmentors/blockedmentors.component';
+import { StudentpaymentComponent } from './studentpayment/studentpayment.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'courses', component: CoursesComponent },
   { path: 'contactus', component: ContactusComponent },
   { path: 'search', component: SearchComponent },
+  { path: 'studentpayment', component: StudentpaymentComponent},
   {
     path: 'adminhome',
     component: AdminhomeComponent,

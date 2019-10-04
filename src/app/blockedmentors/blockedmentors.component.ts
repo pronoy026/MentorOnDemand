@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class BlockedmentorsComponent implements OnInit {
 
   mentorList
-  tabletoggler : boolean
+  tabletoggler: boolean
 
   mentorName
   mentorEmail
@@ -29,18 +29,18 @@ export class BlockedmentorsComponent implements OnInit {
 
   ngOnInit() {
     this._block.allBlockedMentors()
-        .subscribe(
-          res => {
-            this.mentorList = res
+      .subscribe(
+        res => {
+          this.mentorList = res
 
-            if(this.mentorList.length==0) {
-              this.tabletoggler = false
-            } else {
-              this.tabletoggler =true
-            }
-          },
-          err => console.log(err)
-        )
+          if (this.mentorList.length == 0) {
+            this.tabletoggler = false
+          } else {
+            this.tabletoggler = true
+          }
+        },
+        err => console.log(err)
+      )
 
   }
 
@@ -60,13 +60,27 @@ export class BlockedmentorsComponent implements OnInit {
 
   unblockMentor(mentor) {
     this._block.unblockMentor(mentor)
-        .subscribe(
-          res => {
-            console.log('unblocked mentor')
-            this._router.navigate(['/adminhome/allmentors'])
-          },
-          err => console.log(err)
-        )
+      .subscribe(
+        res => {
+          console.log('unblocked mentor')
+
+          this._block.allBlockedMentors()
+            .subscribe(
+              res => {
+                this.mentorList = res
+
+                if (this.mentorList.length == 0) {
+                  this.tabletoggler = false
+                } else {
+                  this.tabletoggler = true
+                }
+              },
+              err => console.log(err)
+            )
+          // this._router.navigate(['/adminhome/allmentors'])
+        },
+        err => console.log(err)
+      )
   }
 
 }

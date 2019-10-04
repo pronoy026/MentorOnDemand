@@ -12,12 +12,16 @@ export class DatashareService {
   userTypeAdmin : boolean
   accType : string
   userName : string
+  selectedCourseForPayment
 
   private allCoursesUrl = "http://localhost:3000/api/courseAll"
   private allMentorCoursesUrl = "http://localhost:3000/api/allMentorCourses"
   private _getAllStudentsUrl ="http://localhost:3000/api/allStudents"
   private _getAllCoursesUrl = "http://localhost:3000/api/allCourses"
   private _getAllMentorsUrl = "http://localhost:3000/api/allMentors"
+
+  private _appliedCourseUrl = "http://localhost:3000/api/appliedcourse"
+  private _getAllAppliedCoursesUrl = "http://localhost:3000/api/allappliedcourses"
 
   constructor( private http : HttpClient) { }
 
@@ -44,4 +48,12 @@ export class DatashareService {
     return this.http.get<any>(this._getAllCoursesUrl)
   }
 
+  // applied courses
+  appliedCourse(course) {
+    return this.http.post<any>(this._appliedCourseUrl, course)
+  }
+
+  getAllAppliedCourses() {
+    return this.http.get<any>(this._getAllAppliedCoursesUrl)
+  }
 }

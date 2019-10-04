@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatashareService } from '../datashare.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses',
@@ -16,21 +17,21 @@ export class CoursesComponent implements OnInit {
   expYears
 
 
-  constructor(private _dataService: DatashareService) { }
+  constructor(public _dataService: DatashareService, private _router : Router) { }
 
   ngOnInit() {
-    this.getCourses()
+    // this.getCourses()
     this.getMentorCourses()
     console.log(this.courseList)
     console.log(this.mentorCourseList)
   }
-  getCourses() {
+ /* getCourses() {
     this._dataService.getAllCourses()
       .subscribe(
         res => this.courseList = res,
         err => console.log(err)
       )
-  }
+  } */
 
   getMentorCourses() {
     this._dataService.getAllMentorCourses()
@@ -49,7 +50,9 @@ export class CoursesComponent implements OnInit {
 
   }
 
-  selectMentor(data) {
-    console.log(data)
+  makePayment(course) {
+    console.log(course)
+    this._dataService.selectedCourseForPayment = course
+    this._router.navigate(['/studentpayment'])
   }
 }

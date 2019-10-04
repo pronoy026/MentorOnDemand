@@ -14,6 +14,8 @@ const BlockedMentor = require('../models/blocked_mentors')
 const MentorCourse = require('../models/model_mentorcourses')
 const BlockedCourse = require('../models/blocked_courses')
 
+const AppliedCourse = require('../models/applied_courses')
+
 
 mongoose.connect(config.mongo_url, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
     if (err) {
@@ -419,5 +421,44 @@ function verifyToken(req, res, next) {
         // console.log(req.userId) 
     next()
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// for course request
+
+router.post('/appliedcourse', async(req, res) => {
+    let courseData = req.body;
+    let appliedcourse = new AppliedCourse(courseData)
+    await appliedcourse.save((err, appliedcourse) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log('course applied successfully')
+            res.status(200).send(appliedcourse)
+        }
+    })
+})
+
+router.get('/allappliedcourses', (req, res) => {
+    AppliedCourse.find({}, (err, courses) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(courses)
+        }
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router

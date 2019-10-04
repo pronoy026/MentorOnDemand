@@ -36,7 +36,20 @@ export class AllstudentsComponent implements OnInit {
         res => {
           console.log("blocked")
           console.log(res)
-          this._router.navigate(['/adminhome/blockedstudents'])
+          this._datashare.getAllStudents()
+            .subscribe(
+              res => {
+                this.allStudents = res
+                if (this.allStudents.length == 0) {
+                  this.tabletoggler = false
+                }
+                else {
+                  this.tabletoggler = true
+                }
+              },
+              err => console.log(err)
+            )
+          // this._router.navigate(['/adminhome/blockedstudents'])
         },
         err => console.log(err)
       )

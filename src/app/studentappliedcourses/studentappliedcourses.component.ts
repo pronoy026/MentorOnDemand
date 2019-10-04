@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatashareService } from '../datashare.service';
 
 @Component({
   selector: 'app-studentappliedcourses',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentappliedcoursesComponent implements OnInit {
 
-  constructor() { }
+  appliedCourses
+  tabletoggler: boolean
+
+  constructor(private _datashare: DatashareService) { }
 
   ngOnInit() {
+    this._datashare.getAllAppliedCourses()
+      .subscribe(
+        res => {
+          this.appliedCourses = res
+          if (this.appliedCourses.length == 0) {
+            this.tabletoggler = false
+          } else {
+            this.tabletoggler = true
+          }
+        },
+        err => console.log(err)
+      )
   }
 
 }

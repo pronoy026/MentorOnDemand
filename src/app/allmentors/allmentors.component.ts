@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class AllmentorsComponent implements OnInit {
 
   mentorList
-  tabletoggler : boolean
+  tabletoggler: boolean
 
   mentorName
   mentorEmail
@@ -33,7 +33,7 @@ export class AllmentorsComponent implements OnInit {
       .subscribe(
         res => {
           this.mentorList = res
-          if (this.mentorList.length==0) {
+          if (this.mentorList.length == 0) {
             this.tabletoggler = false
           } else {
             this.tabletoggler = true
@@ -63,7 +63,21 @@ export class AllmentorsComponent implements OnInit {
       .subscribe(
         res => {
           console.log('blocked')
-          this._router.navigate(['/adminhome/blockedmentors'])
+
+          this._datashare.getAllMentors()
+            .subscribe(
+              res => {
+                this.mentorList = res
+                if (this.mentorList.length == 0) {
+                  this.tabletoggler = false
+                } else {
+                  this.tabletoggler = true
+                }
+
+              },
+              err => console.log(err)
+            )
+          // this._router.navigate(['/adminhome/blockedmentors'])
         },
         err => console.log(err)
       )

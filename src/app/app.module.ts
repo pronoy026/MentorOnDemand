@@ -32,6 +32,7 @@ import { AllmentorsComponent } from './allmentors/allmentors.component';
 import { BlockService } from './block.service';
 import { BlockedstudentsComponent } from './blockedstudents/blockedstudents.component';
 import { BlockedmentorsComponent } from './blockedmentors/blockedmentors.component';
+import { StudentpaymentComponent } from './studentpayment/studentpayment.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { BlockedmentorsComponent } from './blockedmentors/blockedmentors.compone
     AllmentorsComponent,
     BlockedstudentsComponent,
     BlockedmentorsComponent,
+    StudentpaymentComponent,
   ],
   imports: [
     BrowserModule,

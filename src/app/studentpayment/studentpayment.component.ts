@@ -14,6 +14,7 @@ export class StudentpaymentComponent implements OnInit {
   courseData
   paymentSuccess: boolean
   notStudent: boolean
+  eligibleStudent: boolean
 
   constructor(private _router: Router, private _datashare: DatashareService, private _auth: AuthService) { }
 
@@ -28,12 +29,23 @@ export class StudentpaymentComponent implements OnInit {
           this._datashare.userTypeStudent = true
           this._datashare.userTypeMentor = false
           this._datashare.userTypeAdmin = false
-          this._datashare.userName = res.name.split(' ')[0]
+          this._datashare.userName = res.name
           if (res.accType !== "student") {
             this.notStudent = true
             // this._router.navigate(['/signin'])
           } else {
             this.notStudent = false
+            if (this.courseData !== undefined) {
+              this.courseData.studentEmail = res.userEmail
+              this._datashare.checkCourse(this.courseData)
+                .subscribe(
+                  res => {
+                    this.eligibleStudent = res
+                    console.log(this.eligibleStudent)
+                  },
+                  err => console.log(err)
+                )
+            }
           }
         },
         err => {
@@ -51,8 +63,24 @@ export class StudentpaymentComponent implements OnInit {
 
   appliedCourse(course) {
     console.log('data came')
+    console.log(course)
     this.paymentSuccess = true
-    this._datashare.appliedCourse(course)
+    let record = {
+      name: course.name,
+      description: course.description,
+      fee: course.fee,
+      mentorEmail: course.mentorEmail,
+      mentorName: course.mentorName,
+      duration: course.duration,
+      imageUrl: course.imageUrl,
+      nooftrainings: course.nooftrainings,
+      commision: course.commision,
+      rating: course.rating,
+      expYears: course.expYears,
+      studentEmail: this._datashare.userEmail,
+      studentName: this._datashare.userName
+    }
+    this._datashare.appliedCourse(record)
       .subscribe(
         res => console.log('course applied successfully'),
         err => console.log(err)

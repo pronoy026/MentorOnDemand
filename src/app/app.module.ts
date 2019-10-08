@@ -33,6 +33,13 @@ import { BlockService } from './block.service';
 import { BlockedstudentsComponent } from './blockedstudents/blockedstudents.component';
 import { BlockedmentorsComponent } from './blockedmentors/blockedmentors.component';
 import { StudentpaymentComponent } from './studentpayment/studentpayment.component';
+import { MentorregisteredcoursesComponent } from './mentorregisteredcourses/mentorregisteredcourses.component';
+import { MentorrequestedcoursesComponent } from './mentorrequestedcourses/mentorrequestedcourses.component';
+import { MentoreditprofileComponent } from './mentoreditprofile/mentoreditprofile.component';
+import { StudenteditprofileComponent } from './studenteditprofile/studenteditprofile.component';
+import { StudentcompletedcoursesComponent } from './studentcompletedcourses/studentcompletedcourses.component';
+import { MentorcompletedcoursesComponent } from './mentorcompletedcourses/mentorcompletedcourses.component';
+import { CourseOverviewComponent } from './course-overview/course-overview.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +67,13 @@ import { StudentpaymentComponent } from './studentpayment/studentpayment.compone
     BlockedstudentsComponent,
     BlockedmentorsComponent,
     StudentpaymentComponent,
+    MentorregisteredcoursesComponent,
+    MentorrequestedcoursesComponent,
+    MentoreditprofileComponent,
+    StudenteditprofileComponent,
+    StudentcompletedcoursesComponent,
+    MentorcompletedcoursesComponent,
+    CourseOverviewComponent,
   ],
   imports: [
     BrowserModule,

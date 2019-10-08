@@ -1,23 +1,21 @@
 <div class="container">
     <div style="padding-top: 20px">
-        <h4 style="color: #00887a;text-align: center; font-family: fantasy">All Registered Courses</h4>
+        <h4 style="color: #00887a;text-align: center; font-family: fantasy">All Accepted (Registered) Courses</h4>
         <table *ngIf="tabletoggler" class="table">
             <thead class="thead-dark">
                 <tr>
                     <th>No</th>
                     <th>Course Name</th>
-                    <th>Mentor</th>
+                    <th>Student Name</th>
                     <th>Completion Status</th>
-                    <th>Overview</th>
                 </tr>
             </thead>
             <tbody *ngFor="let course of registeredCourses; let i = index" class="shadow">
                 <tr>
                     <td>{{i+1}}</td>
                     <td>{{course.name}}</td>
-                    <td>{{course.mentorName}}</td>
+                    <td>{{course.studentName}}</td>
                     <td>{{course.completion}} %</td>
-                    <td><button class="btn btn-primary" (click)="courseOverview(course)">Overview</button></td>
                 </tr>
             </tbody>
         </table>

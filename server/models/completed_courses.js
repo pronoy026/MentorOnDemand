@@ -1,22 +1,22 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-let mentorcourseSchema = new Schema({
+const completedcourse = mongoose.model('completedcourse', new Schema({
     name: String,
     description: String,
     fee: Number,
     mentorEmail: String,
     mentorName: String,
-    duration: String,
+    duration: Number,
     imageUrl: String,
     nooftrainings: Number,
     commision: Number,
     rating: Number,
-    expYears: Number
-})
+    expYears: Number,
+    studentEmail: String,
+    studentName: String,
+    completion: Number
 
-// mentorcourseSchema.index({ name: 'text', mentorName: 'text' });
+}), 'completedcourses')
 
-let mentorcourse = mongoose.model('mentorcourse', mentorcourseSchema, 'mentorcourses')
-
-module.exports = mentorcourse
+module.exports = completedcourse

@@ -1,26 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { DatashareService } from '../datashare.service';
 import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-studentregisteredcourses',
-  templateUrl: './studentregisteredcourses.component.html',
-  styleUrls: ['./studentregisteredcourses.component.scss']
+  selector: 'app-mentorregisteredcourses',
+  templateUrl: './mentorregisteredcourses.component.html',
+  styleUrls: ['./mentorregisteredcourses.component.scss']
 })
-export class StudentregisteredcoursesComponent implements OnInit {
+export class MentorregisteredcoursesComponent implements OnInit {
 
   registeredCourses
   tabletoggler: boolean
 
-  constructor(public _datashare: DatashareService, private _auth: AuthService, private _router : Router) { }
+  constructor(private _datashare: DatashareService, private _auth: AuthService) { }
 
   ngOnInit() {
     this._auth.specialTokenRequest()
       .subscribe(
         res => {
-          let studentEmail = res.userEmail
-          this._datashare.getStudentAllRegisteredCourses({ studentEmail })
+          let mentorEmail = res.userEmail
+          this._datashare.getMentorAllRegisteredCourses({ mentorEmail })
             .subscribe(
               res => {
                 this.registeredCourses = res
@@ -36,11 +35,6 @@ export class StudentregisteredcoursesComponent implements OnInit {
         },
         err => console.log(err)
       )
-  }
-
-  courseOverview(course) {
-    this._datashare.courseOverviewData = course
-    this._router.navigate(['/studenthome/courseoverview'])
   }
 
 }

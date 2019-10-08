@@ -3,6 +3,7 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const config = require('../config')
+mongoose.set('useFindAndModify', false);
 
 //models
 const Student = require('../models/model_student')
@@ -15,6 +16,8 @@ const MentorCourse = require('../models/model_mentorcourses')
 const BlockedCourse = require('../models/blocked_courses')
 
 const AppliedCourse = require('../models/applied_courses')
+const RegisteredCourse = require('../models/registered_courses')
+const CompletedCourse = require('../models/completed_courses')
 
 
 mongoose.connect(config.mongo_url, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
@@ -333,8 +336,6 @@ router.post('/mentorLogin', (req, res) => {
     })
 })
 
-
-
 //for admin
 
 router.post('/adminLogin', (req, res) => {
@@ -438,8 +439,20 @@ router.post('/appliedcourse', async(req, res) => {
     })
 })
 
-router.get('/allappliedcourses', (req, res) => {
-    AppliedCourse.find({}, (err, courses) => {
+router.post('/studentallappliedcourses', (req, res) => {
+    let courseData = req.body
+    console.log(courseData)
+    AppliedCourse.find({ studentEmail: courseData.studentEmail }, (err, courses) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(courses)
+        }
+    })
+})
+
+router.post('/mentorallappliedcourses', (req, res) => {
+    AppliedCourse.find({ mentorEmail: req.body.mentorEmail }, (err, courses) => {
         if (err) {
             console.log(err)
         } else {
@@ -449,14 +462,177 @@ router.get('/allappliedcourses', (req, res) => {
 })
 
 
+router.post('/deleteappliedcourse', (req, res) => {
+    AppliedCourse.deleteOne({ mentorEmail: req.body.mentorEmail }, (err, courses) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(courses)
+        }
+    })
+})
 
 
+//for registered courses
 
 
+router.post('/registeredcourse', async(req, res) => {
+    let courseData = req.body;
+    let registeredcourse = new RegisteredCourse(courseData)
+    await registeredcourse.save((err, registeredcourse) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log('course registered successfully')
+            res.status(200).send(registeredcourse)
+        }
+    })
+    AppliedCourse.deleteOne({ mentorEmail: req.body.mentorEmail, studentEmail: req.body.studentEmail }, (err, courses) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log('Applied Course deleted successfully')
+        }
+    })
+})
+
+router.post('/studentallregisteredcourses', (req, res) => {
+    let courseData = req.body
+    RegisteredCourse.find({ studentEmail: courseData.studentEmail }, (err, courses) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(courses)
+        }
+    })
+})
+
+router.post('/mentorallregisteredcourses', (req, res) => {
+    RegisteredCourse.find({ mentorEmail: req.body.mentorEmail }, (err, courses) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(courses)
+        }
+    })
+})
+
+router.put('/updateregisteredcourse', (req, res) => {
+    RegisteredCourse.findOneAndUpdate({ studentEmail: req.body.studentEmail, mentorEmail: req.body.mentorEmail }, req.body, (err, course) => {
+        if (err) console.log(err)
+        else {
+            res.send(course);
+        }
+    });
+})
+
+router.post('/completedcourse', async(req, res) => {
+    let courseData = req.body;
+    let completedcourse = new CompletedCourse(courseData)
+    await completedcourse.save((err, completedcourse) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log('course completed successfully')
+            res.status(200).send(completedcourse)
+        }
+    })
+    RegisteredCourse.deleteOne({ mentorEmail: req.body.mentorEmail, studentEmail: req.body.studentEmail }, (err, courses) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log('reg. Course deleted successfully')
+        }
+    })
+})
 
 
+router.post('/studentallcompletedcourses', (req, res) => {
+    let courseData = req.body
+    CompletedCourse.find({ studentEmail: courseData.studentEmail }, (err, courses) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(courses)
+        }
+    })
+})
+
+router.post('/mentorallcompletedcourses', (req, res) => {
+    CompletedCourse.find({ mentorEmail: req.body.mentorEmail }, (err, courses) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(courses)
+        }
+    })
+})
 
 
+//check if course already reg, enrolledor completed
+
+router.post('/checkcourse', async(req, res) => {
+    let completed
+    let reg
+    let applied
+    await CompletedCourse.find({ mentorEmail: req.body.mentorEmail, studentEmail: req.body.studentEmail }, (err, courses) => {
+        if (err) {
+            console.log(err)
+        } else {
+            completed = courses
+            console.log(completed)
+        }
+    })
+    await RegisteredCourse.find({ mentorEmail: req.body.mentorEmail, studentEmail: req.body.studentEmail }, (err, courses) => {
+        if (err) {
+            console.log(err)
+        } else {
+            reg = courses
+            console.log(reg)
+        }
+    })
+    await AppliedCourse.find({ mentorEmail: req.body.mentorEmail, studentEmail: req.body.studentEmail }, (err, courses) => {
+        if (err) {
+            console.log(err)
+        } else {
+            applied = courses
+            console.log(applied)
+        }
+    })
+    if (completed.length == 0 && reg.length == 0 && applied.length == 0) {
+        res.send(true)
+    } else {
+        res.send(false)
+    }
+
+})
+
+//search
+router.post('/search', (req, res) => {
+    // db.products.find( { sku: { $regex: /789$/ } } )
+    // let pattern = `/${req.body.searchString}$/`
+    // console.log(pattern)
+    // iduration = parseInt(req.body.searchString, 10)
+
+    MentorCourse.find({ $or: [{ name: req.body.searchString }, { mentorName: req.body.searchString }] }, (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.send(result)
+        }
+    })
+})
+
+// router.post('/search', (req, res) => {
+//     console.log('comes')
+//     MentorCourse.find({ mentorEmail: req.body.searchString }, (err, courses) => {
+//         if (err) {
+//             console.log(err)
+//         } else {
+//             res.status(200).send(courses)
+//         }
+//     })
+// })
 
 
 

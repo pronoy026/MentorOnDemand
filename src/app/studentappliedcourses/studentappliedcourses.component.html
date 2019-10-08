@@ -1,6 +1,6 @@
 <div class="container">
     <div style="padding-top: 20px">
-        <h4 style="color: #00887a;text-align: center; font-family: fantasy">All Students</h4>
+        <h4 style="color: #00887a;text-align: center; font-family: fantasy">All Applied Courses</h4>
         <table *ngIf="tabletoggler" class="table">
             <thead class="thead-dark">
                 <tr>
@@ -15,11 +15,10 @@
                     <td>{{i+1}}</td>
                     <td>{{course.name}}</td>
                     <td>{{course.mentorName}}</td>
-                    <td><button class="btn btn-outline-danger" (click)="blockStudent(student)">Description</button></td>
+                    <td>Pending</td>
                 </tr>
             </tbody>
         </table>
-        <div *ngIf="!tabletoggler" style="text-align: center; color:#0066ff;padding-top:100px ;"> There is no valid
-            student as a user!</div>
+        <div *ngIf="!tabletoggler" style="text-align: center; color:#0066ff;padding-top:100px ;"> There are no applied courses!</div>
     </div>
 </div>

@@ -11,14 +11,14 @@
                             </div>
                             <!-- Name -->
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Name</label>
+                                <label>Name</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" #sname="ngModel" [class.is-invalid]="sname.invalid && sname.touched" placeholder="Enter full name" id="userName" aria-describedby="emailHelp" name="studentName" [(ngModel)]="registerStudentData.name" equired>
+                                    <input type="text" class="form-control" #uname="ngModel" [class.is-invalid]="uname.invalid && uname.touched" placeholder="Enter full name" id="studentName" name="studentName" [(ngModel)]="registerStudentData.name" required>
                                 </div>
-                                <small class="text-danger" [class.d-none]=" sname.valid || sname.untouched"> Name is
+                                <small class="text-danger" [class.d-none]="uname.valid || uname.untouched"> Name is
                                 required!</small>
                             </div>
                             <!-- email -->
